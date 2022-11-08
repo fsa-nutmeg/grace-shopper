@@ -1,0 +1,5 @@
+cart: [] => [{productInfo, qty}, {}, {}, {}],
+user: {} => {userInfo},
+users: [] => [{userInfo}, {}, {}, {}],
+albums: [] => [{albumInfo}, {}, {}, {}],
+singleAlbum: {} => {albumInfo},
