@@ -6,4 +6,4 @@
 
 - - - -
 
-![Imgur](https://imgur.com/7ySmyQ7)
+[Imgur](https://imgur.com/7ySmyQ7)
