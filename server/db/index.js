@@ -1,7 +1,6 @@
 //this is the access point for all things database related!
 
 const db = require('./db');
-const Genre = require('./models/Genre');
 const Order = require('./models/Order');
 const OrderAlbum = require('./models/OrderAlbum');
 const Album = require('./models/Album')
@@ -15,7 +14,6 @@ module.exports = {
   models: {
     User,
     Order,
-    Genre,
     OrderAlbum,
     Album
   },
@@ -27,4 +25,3 @@ Album.hasMany(OrderAlbum);
 OrderAlbum.belongsTo(Album);
 
 OrderAlbum.belongsTo(Order);
-Genre.hasMany(Album);

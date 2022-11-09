@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { Album, Genre, Order, OrderAlbum, User },
+  models: { Album, Order, OrderAlbum, User },
 } = require('../server/db');
 
 const axios = require('axios');
@@ -20,6 +20,7 @@ const ALBUMS_PER_ARTIST = 5;
 const NUM_USERS = 30;
 
 const prices = [9.99, 19.99, 15.99, 12.84];
+const genres = ['pop', 'rap', 'rock', 'electronic', 'country', 'bluegrass',];
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -67,7 +68,7 @@ async function seed() {
 
         const description = album.wiki.summary;
         const image = album.image[3]['#text'];
-        const genre = tags[1].name;
+        const genre = genres[Math.floor(Math.random() * 6)];
 
         // create extra data as needed
         const price = prices[Math.floor(Math.random() * 4)];
@@ -102,6 +103,33 @@ async function seed() {
     user.isAdmin = false;
     await User.create(user);
   }
+
+  // Creating Orders
+  for (let i = 1; i < 21; i++) {
+    const order = {};
+    order.shippingInfo = faker.address.streetAddress() +
+    ' ' +
+    faker.address.city() +
+    ' ' +
+    faker.address.country();
+    order.billingInfo = faker.address.streetAddress() +
+    ' ' +
+    faker.address.city() +
+    ' ' +
+    faker.address.country();
+    order.completed = Math.random() > 0.5 ? true : false;
+    order.userId = i;
+    await Order.create(order);
+  }
+// Order Items
+for (let i = 0; i < 50; i++){
+  const orderAlbums = {};
+  orderAlbums.price = prices[Math.floor(Math.random() * 4)];
+  orderAlbums.quantity = Math.ceil(Math.random() * 3);
+  orderAlbums.albumId = Math.ceil(Math.random() * 30);
+  orderAlbums.orderId = Math.ceil(Math.random() * 20);
+  await OrderAlbum.create(orderAlbums);
+}
   console.log(`seeded grace-shopper successfully`);
 }
 
