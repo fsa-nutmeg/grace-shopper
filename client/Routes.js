@@ -18,18 +18,18 @@ class Routes extends Component {
 
     return (
       <div>
-        {isLoggedIn ? (
+        {/* {isLoggedIn ? ( */}
           <Switch>
             <Route path="/home" component={Home} />
             <Redirect to="/home" />
           </Switch>
-        ) : (
-          <Switch>
+        {/* ) : ( */}
+          {/* <Switch>
             <Route path='/' exact component={ Login } />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-          </Switch>
-        )}
+          </Switch> */}
+        {/* )} */}
       </div>
     )
   }
