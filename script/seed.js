@@ -20,7 +20,7 @@ const ALBUMS_PER_ARTIST = 5;
 const NUM_USERS = 30;
 
 const prices = [9.99, 19.99, 15.99, 12.84];
-const genres = ['pop', 'rap', 'rock', 'electronic', 'country', 'bluegrass',];
+const genres = ['pop', 'rap', 'rock', 'electronic', 'country', 'bluegrass'];
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -103,33 +103,47 @@ async function seed() {
     user.isAdmin = false;
     await User.create(user);
   }
+  // Create Admin User
+  const admin = {};
+  admin.email = 'admin@hotmail.com';
+  admin.password = 'password';
+  admin.address =
+    faker.address.streetAddress() +
+    ' ' +
+    faker.address.city() +
+    ' ' +
+    faker.address.country();
+  admin.isAdmin = true;
+  await User.create(admin);
 
   // Creating Orders
   for (let i = 1; i < 21; i++) {
     const order = {};
-    order.shippingInfo = faker.address.streetAddress() +
-    ' ' +
-    faker.address.city() +
-    ' ' +
-    faker.address.country();
-    order.billingInfo = faker.address.streetAddress() +
-    ' ' +
-    faker.address.city() +
-    ' ' +
-    faker.address.country();
+    order.shippingInfo =
+      faker.address.streetAddress() +
+      ' ' +
+      faker.address.city() +
+      ' ' +
+      faker.address.country();
+    order.billingInfo =
+      faker.address.streetAddress() +
+      ' ' +
+      faker.address.city() +
+      ' ' +
+      faker.address.country();
     order.completed = Math.random() > 0.5 ? true : false;
     order.userId = i;
     await Order.create(order);
   }
-// Order Items
-for (let i = 0; i < 50; i++){
-  const orderAlbums = {};
-  orderAlbums.price = prices[Math.floor(Math.random() * 4)];
-  orderAlbums.quantity = Math.ceil(Math.random() * 3);
-  orderAlbums.albumId = Math.ceil(Math.random() * 30);
-  orderAlbums.orderId = Math.ceil(Math.random() * 20);
-  await OrderAlbum.create(orderAlbums);
-}
+  // Order Items
+  for (let i = 0; i < 50; i++) {
+    const orderAlbums = {};
+    orderAlbums.price = prices[Math.floor(Math.random() * 4)];
+    orderAlbums.quantity = Math.ceil(Math.random() * 3);
+    orderAlbums.albumId = Math.ceil(Math.random() * 30);
+    orderAlbums.orderId = Math.ceil(Math.random() * 20);
+    await OrderAlbum.create(orderAlbums);
+  }
   console.log(`seeded grace-shopper successfully`);
 }
 
