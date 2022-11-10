@@ -3,7 +3,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { fetchSingleAlbum, deleteAlbum } from "../store/singleAlbum";
+import {
+  fetchSingleAlbum,
+  deleteAlbum,
+  updateAlbum,
+} from "../store/singleAlbum";
 
 export class SingleAlbum extends React.Component {
   constructor(props) {
@@ -73,8 +77,10 @@ export class SingleAlbum extends React.Component {
                   <button
                     type="submit"
                     onClick={(event) => {
-                      event.preventDefault();
-                      this.props.deleteAlbum(this.props.singleAlbum.id);
+                      if (window.confirm("Are you sure?")) {
+                        event.preventDefault();
+                        this.props.deleteAlbum(this.props.singleAlbum.id);
+                      }
                     }}
                   >
                     REMOVE ALBUM FROM CATALOG
@@ -101,6 +107,7 @@ const mapDispatch = (dispatch) => {
   return {
     getSingleAlbum: (id) => dispatch(fetchSingleAlbum(id)),
     deleteAlbum: (id) => dispatch(deleteAlbum(id)),
+    updateAlbum: (singleAlbum) => dispatch(updateAlbum(singleAlbum)),
   };
 };
 
