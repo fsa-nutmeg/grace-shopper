@@ -3,7 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { fetchAlbums} from "../redux/albums";
+import { fetchAlbums } from "../store/allAlbums";
 
 export class AllAlbums extends React.Component {
   constructor(props) {
@@ -32,26 +32,11 @@ export class AllAlbums extends React.Component {
           {albums.length ? (
             albums.map((album) => (
               <div key={album.id}>
-                <form onSubmit={(ev) => ev.preventDefault()}>
-                  <button
-                    type="submit"
-                    onClick={(event) => {
-                      event.preventDefault();
-                      this.props.deletealbum(album.id);
-                      this.setState((prevState, prevProps) => ({
-                        albums: prevProps.albums.filter(
-                          (specificalbum) => specificalbum.id !== album.id
-                        ),
-                      }));
-                    }}
-                  >
-                    X
-                  </button>
-                </form>
+                <form onSubmit={(ev) => ev.preventDefault()}></form>
                 <Link to={`/albums/${album.id}`} key={album.id}>
-                  <div className="specificalbum" key={album.id}>
-                    <p>{album.name}</p>
-                    <img src={album.imageUrl} width="auto" height="200" />
+                  <div className="specificAlbum" key={album.id}>
+                    <p>{album.title}</p>
+                    <img src={album.image} width="auto" height="200" />
                   </div>
                 </Link>
               </div>
@@ -60,7 +45,6 @@ export class AllAlbums extends React.Component {
             <p>No albums...</p>
           )}
         </div>
-        <NewAlbum />
       </div>
     );
   }

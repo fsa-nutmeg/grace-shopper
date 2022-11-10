@@ -18,7 +18,7 @@ export const setAllAlbums = (albums) => {
 export const fetchAlbums = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("/api/allAlbums");
+      const { data } = await axios.get("/api/albums");
       dispatch(setAllAlbums(data));
     } catch (err) {
       console.log(err);

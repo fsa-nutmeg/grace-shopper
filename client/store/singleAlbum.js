@@ -6,19 +6,19 @@ const SET_SINGLE_ALBUM = "SET_SINGLE_ALBUM";
 
 // ACTION CREATORS
 
-export const setSingleAlbum = (album) => {
+export const setSingleAlbum = (singleAlbum) => {
   return {
     type: SET_SINGLE_ALBUM,
-    album,
+    singleAlbum,
   };
 };
 
 // THUNK CREATORS
 
-export const fetchSingleAlbum = () => {
+export const fetchSingleAlbum = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("/api/album");
+      const { data } = await axios.get(`/api/albums/${id}`);
       dispatch(setSingleAlbum(data));
     } catch (err) {
       console.log(err);
@@ -32,7 +32,7 @@ const initialState = {};
 export default function singleAlbumReducer(state = initialState, action) {
   switch (action.type) {
     case SET_SINGLE_ALBUM:
-      return action.album;
+      return action.singleAlbum;
     default:
       return state;
   }
