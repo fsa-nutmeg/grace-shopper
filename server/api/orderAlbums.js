@@ -10,7 +10,7 @@ router.post('/', async (req, res, next) => {
     // requires orderId, albumId, price & quantity
     // in req.body
     const item = req.body;
-    const newItem = await new OrderAlbum(item);
+    const newItem = await OrderAlbum.create(item);
     res.json(newItem);
   } catch (err) {
     next(err);
