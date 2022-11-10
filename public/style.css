@@ -19,3 +19,32 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+/*** CART ***/
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cart-container > h2 {
+  color: red;
+  padding: 15px;
+}
+
+.albums-view {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.card {
+  margin: 20px;
+  width: 200px !important;
+}
+
+.price {
+  color: red;
+  font-weight: bolder;
+}
