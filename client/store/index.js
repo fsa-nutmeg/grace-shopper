@@ -1,14 +1,24 @@
-import {createStore, combineReducers, applyMiddleware} from 'redux'
-import {createLogger} from 'redux-logger'
-import thunkMiddleware from 'redux-thunk'
-import {composeWithDevTools} from 'redux-devtools-extension'
-import auth from './auth'
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createLogger } from "redux-logger";
+import thunkMiddleware from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
+import auth from "./auth";
+import albumsReducer from "./allAlbums";
+import singleAlbumReducer from "./singleAlbum";
+import usersReducer from "./allUsers";
+import singleUserReducer from "./singleUser";
 
-const reducer = combineReducers({ auth })
+const reducer = combineReducers({
+  auth: auth,
+  albums: albumsReducer,
+  singleAlbum: singleAlbumReducer,
+  users: usersReducer,
+  user: singleUserReducer,
+});
 const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
-)
-const store = createStore(reducer, middleware)
+  applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
+);
+const store = createStore(reducer, middleware);
 
-export default store
-export * from './auth'
+export default store;
+export * from "./auth";

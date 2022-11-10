@@ -26,6 +26,9 @@ const Album = db.define('album', {
   image: {
     type: Sequelize.STRING,
   },
+  genre: {
+    type: Sequelize.STRING
+  }
 
 })
 
