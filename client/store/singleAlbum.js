@@ -71,7 +71,7 @@ export default function singleAlbumReducer(state = initialState, action) {
     case SET_SINGLE_ALBUM:
       return action.singleAlbum;
     case DELETE_ALBUM:
-      return state;
+      return {};
     case UPDATE_ALBUM:
       return action.singleAlbum;
     default:
