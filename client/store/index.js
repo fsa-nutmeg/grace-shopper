@@ -7,6 +7,8 @@ import albumsReducer from "./allAlbums";
 import singleAlbumReducer from "./singleAlbum";
 import usersReducer from "./allUsers";
 import singleUserReducer from "./singleUser";
+import cartInventoryReducer from "./cartInventory";
+//import cartInfoReducer from "./cartInfo";
 
 const reducer = combineReducers({
   auth: auth,
@@ -14,6 +16,8 @@ const reducer = combineReducers({
   singleAlbum: singleAlbumReducer,
   users: usersReducer,
   user: singleUserReducer,
+  cartInventory: cartInventoryReducer,
+  //cartInfo: cartInfoReducer
 });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))

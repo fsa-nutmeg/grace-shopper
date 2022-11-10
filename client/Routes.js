@@ -6,7 +6,7 @@ import Home from "./components/Home";
 import { me } from "./store";
 import AllAlbums from "./components/AllAlbums.js";
 import SingleAlbum from "./components/SingleAlbum.js";
-
+import Cart from './components/Cart';
 /**
  * COMPONENT
  */
@@ -25,6 +25,7 @@ class Routes extends Component {
           <Route path="/home" component={Home} />
           <Route exact path="/albums" component={AllAlbums} />
           <Route exact path="/albums/:albumId" component={SingleAlbum} />
+          <Route exact path="/cart" component={Cart} />
           <Redirect to="/home" />
         </Switch>
         {/* ) : ( */}
