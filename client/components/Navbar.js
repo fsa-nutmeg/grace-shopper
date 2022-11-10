@@ -21,7 +21,7 @@ function Navbars() {
               <NavDropdown.Item href="#action/3.2">Log In</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Sign Up</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Cart</NavDropdown.Item>
+              <NavDropdown.Item href="/cart">Cart</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           {/* <Nav>
