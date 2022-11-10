@@ -1,12 +1,12 @@
 //[ ] build this component
 import React from "react";
 import { connect } from "react-redux";
-import { fetchSingleUser } from "../store/SingleUser";
+import { fetchSingleUser } from "../store/singleUser";
 import { Link } from "react-router-dom";
 
 export class SingleUser extends React.Component {
   componentDidMount() {
-    const userId = this.props.match.params.userId;
+    const userId = this.props.match.params.id;
     this.props.getSingleUser(userId);
   }
 

@@ -6,7 +6,7 @@ import Home from "./components/Home";
 import { me } from "./store";
 import AllAlbums from "./components/AllAlbums.js";
 import SingleAlbum from "./components/SingleAlbum.js";
-
+import SingleUser from "./components/User";
 /**
  * COMPONENT
  */
@@ -25,7 +25,8 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route exact path="/albums" component={AllAlbums} />
             <Route exact path="/albums/:albumId" component={SingleAlbum} />
-            <Redirect to="/home" />
+            <Route exact path="/users/:id" component={SingleUser} />
+            {/* <Redirect to="/home" /> */}
           </Switch>
         ) : (
           <Switch>
@@ -35,7 +36,7 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route exact path="/albums" component={AllAlbums} />
             <Route exact path="/albums/:albumId" component={SingleAlbum} />
-            <Redirect to="/home" />
+            {/* <Redirect to="/home" /> */}
           </Switch>
         )}
       </div>

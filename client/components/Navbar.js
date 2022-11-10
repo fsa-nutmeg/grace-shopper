@@ -6,13 +6,33 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { LinkContainer } from "react-router-bootstrap";
 import { me } from "../store";
+import { fetchSingleUser } from "../store/singleUser";
+
 class Navbars extends Component {
-  componentDidMount() {
-    this.props.loadInitialData();
+  constructor(props) {
+    super(props);
+    this.state = { userId: null };
   }
+  componentDidMount(prev) {
+    this.props.loadInitialData();
+    this.setState({ userId: this.props.user.id });
+  }
+  componentDidUpdate(prev) {
+    this.props.fetchSingleUser();
+  }
+  // fetchSingleUser
 
   render() {
     const { isLoggedIn } = this.props;
+    function logout() {
+      window.localStorage.removeItem("token");
+      window.location.replace("/home");
+    }
+    const id = 1;
+    console.log("this.props", this.props);
+    console.log("this.state", this.state);
+    console.log("userId", this.props.user.id);
+
     return (
       <div>
         {isLoggedIn ? (
@@ -27,8 +47,12 @@ class Navbars extends Component {
                   {/* </LinkContainer> */}
                   <Nav.Link href="#pricing">Genre</Nav.Link>
                   <NavDropdown title="Account" id="collasible-nav-dropdown">
-                    <NavDropdown.Item href="/logout">Log Out</NavDropdown.Item>
-                    <NavDropdown.Item href="/user">User Info</NavDropdown.Item>
+                    <NavDropdown.Item onClick={logout}>
+                      Log Out
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href={`/users/${this.state.userId}`}>
+                      User Info
+                    </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#action/3.4">Cart</NavDropdown.Item>
                   </NavDropdown>
@@ -79,17 +103,27 @@ const mapState = (state) => {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
+    user: state.user,
   };
 };
+
+// const mapUser = (state) => {
+//   return {
+//     user: state.user,
+//   };
+// };
 
 const mapDispatch = (dispatch) => {
   return {
     loadInitialData() {
       dispatch(me());
     },
+    fetchSingleUser() {
+      dispatch(fetchSingleUser(id));
+    },
   };
 };
 
-// The `withRouter` wrapper makes sure that updates are not blocked
-// when the url changes
 export default connect(mapState, mapDispatch)(Navbars);
+
+// export const User = connect(mapUser, mapDispatch)(Navbars);

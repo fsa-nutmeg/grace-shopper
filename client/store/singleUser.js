@@ -15,10 +15,10 @@ export const setSingleUser = (user) => {
 
 // THUNK CREATORS
 
-export const fetchSingleUSER = () => {
+export const fetchSingleUser = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("/api/user");
+      const { data } = await axios.get(`/api/users/${id}`);
       dispatch(setSingleUser(data));
     } catch (err) {
       console.log(err);
