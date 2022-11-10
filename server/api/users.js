@@ -33,7 +33,7 @@ router.put('/', async (req, res, next) => {
   try {
     // requires id (of user) in req.body
     const updates = req.body;
-    const user = await User.getByPk(updates.id);
+    const user = await User.findByPk(updates.id);
 
     if (user === null) {
       const err = new Error();
@@ -60,7 +60,7 @@ router.delete('/:id', async (req, res, next) => {
     const user = await User.findByPk(id);
 
     if (user === null) {
-      const err = new Error();
+      const err = new Error();q
       err.status = 404;
       throw err;
     }

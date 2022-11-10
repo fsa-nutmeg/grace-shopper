@@ -3,20 +3,42 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { fetchSingleAlbum } from "../store/singleAlbum";
+import {
+  fetchSingleAlbum,
+  deleteAlbum,
+  updateAlbum,
+} from "../store/singleAlbum";
 
 export class SingleAlbum extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      singleAlbum: {},
+    };
+  }
+
   componentDidMount() {
     const albumId = this.props.match.params.albumId;
     this.props.getSingleAlbum(albumId);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.singleAlbum !== this.state.singleAlbum) {
+      const albumId = this.props.match.params.albumId;
+      this.props.getSingleAlbum(albumId);
+      this.setState({
+        singleAlbum: this.props.singleAlbum,
+      });
+    }
+  }
+
   render() {
-    console.log(this.props);
+    console.log("props", this.props);
+    console.log("state", this.state);
 
     return (
       <div>
-        {this.props.singleAlbum ? (
+        {this.props.singleAlbum.title ? (
           <div>
             <div>
               {this.props.singleAlbum.staffPick ? (
@@ -51,11 +73,24 @@ export class SingleAlbum extends React.Component {
                 <p className="single-singleAlbum-detail">
                   {this.props.singleAlbum.tracks}
                 </p>
+                <form onSubmit={(ev) => ev.preventDefault()}>
+                  <button
+                    type="submit"
+                    onClick={(event) => {
+                      if (window.confirm("Are you sure?")) {
+                        event.preventDefault();
+                        this.props.deleteAlbum(this.props.singleAlbum.id);
+                      }
+                    }}
+                  >
+                    REMOVE ALBUM FROM CATALOG
+                  </button>
+                </form>
               </div>
             </div>
           </div>
         ) : (
-          <div>404 No Album Here</div>
+          <div>Album Has Been Removed From The Catalog...Sorry </div>
         )}
       </div>
     );
@@ -71,6 +106,8 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getSingleAlbum: (id) => dispatch(fetchSingleAlbum(id)),
+    deleteAlbum: (id) => dispatch(deleteAlbum(id)),
+    updateAlbum: (singleAlbum) => dispatch(updateAlbum(singleAlbum)),
   };
 };
 
