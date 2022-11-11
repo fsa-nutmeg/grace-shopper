@@ -29,9 +29,9 @@ class Navbars extends Component {
       window.location.replace("/home");
     }
     const id = 1;
-    console.log("this.props", this.props);
-    console.log("this.state", this.state);
-    console.log("userId", this.props.user.id);
+    // console.log("this.props", this.props);
+    // console.log("this.state", this.state);
+    // console.log("userId", this.props.user.id);
 
     return (
       <div>
@@ -118,7 +118,7 @@ const mapDispatch = (dispatch) => {
     loadInitialData() {
       dispatch(me());
     },
-    fetchSingleUser() {
+    fetchSingleUser(id) {
       dispatch(fetchSingleUser(id));
     },
   };
