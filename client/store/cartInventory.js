@@ -1,95 +1,89 @@
-import axios from "axios";
+import axios from 'axios';
 
 // ACTIONS
 const ADD_TO_CART = 'ADD_TO_CART';
-const INCREMENT_QUANTITY = 'INCREMENT_QUANTITY';
-const DECREMENT_QUANTITY = 'DECREMENT_QUANTITY';
+const CHANGE_QUANTITY = 'CHANGE_QUANTITY';
 const REMOVE_ITEM = 'REMOVE_ITEM';
 const GET_CART_ITEMS = 'GET_CART_ITEMS';
 
 // ACTION CREATEORS
-export const addToCart = (albumId) => {
+export const addToCart = album => {
   return {
     type: ADD_TO_CART,
-    albumId,
+    album,
   };
 };
 
-export const incrementQuantity = (albumId, value) => {
+export const changeQuantity = (itemId, qty) => {
   return {
-    type: INCREMENT_QUANTITY,
-    payload: {
-      albumId,
-      value,
-    }
-  }
-}
+    type: CHANGE_QUANTITY,
+    itemId,
+    qty,
+  };
+};
 
-export const decrementQuantity = (albumId, value) => {
-  return {
-    type: DECREMENT_QUANTITY,
-    payload: {
-      albumId,
-      value,
-    }
-  }
-}
-
-export const removeItem = (albumId) => {
+export const removeItem = itemId => {
   return {
     type: REMOVE_ITEM,
-    albumId,
-  }
-}
+    itemId,
+  };
+};
 
-export const getCartItems = (albums) => {
+export const getCartItems = albums => {
   return {
     type: GET_CART_ITEMS,
     albums,
-  }
-}
+  };
+};
 
 // THUNK CREATORS
-export const fetchCart = (userId) => {
-  return async (dispatch) => {
+export const fetchCart = userId => {
+  return async dispatch => {
     try {
       const { data } = await axios.get(`/api/users/${userId}/cart`);
       dispatch(getCartItems(data.items));
     } catch (err) {
       console.log(err);
     }
-  }
-}
+  };
+};
 
-// export const fetchCart = (userId) => {
-//   return async (dispatch) => {
-//     try {
-//       const { data } = await axios.get(`/api/users/${userId}/cart`);
-//       dispatch(getCartItems(data.items));
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   }
-// }
+export const changeItemQty = (orderAlbumId, qty) => {
+  return async dispatch => {
+    try {
+      if (qty > 0) {
+        const { data } = await axios.put('/api/orderAlbums', {
+          id: +orderAlbumId,
+          quantity: qty,
+        });
+        const { id, quantity } = data;
 
+        dispatch(changeQuantity(id, +quantity));
+      } else {
+        await axios.delete(`api/orderAlbums/${orderAlbumId}`);
 
-
+        dispatch(removeItem(+orderAlbumId));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
 
 //INITIAL STATE
 const initialState = [];
-
 
 // REDUCERS
 export default function cartInventoryReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_TO_CART:
-      return action.albumId;
-    case INCREMENT_QUANTITY:
-      return action.albumId;
-    case DECREMENT_QUANTITY:
-      return action.albumId;
+      return [...state, action.album];
+    case CHANGE_QUANTITY:
+      return state.map(item =>
+        item.id === action.itemId ? { ...item, quantity: action.qty } : item
+      );
     case REMOVE_ITEM:
-      return action.albumId;
+      return state.filter(item => item.id !== action.itemId);
     case GET_CART_ITEMS:
       return action.albums;
     default:

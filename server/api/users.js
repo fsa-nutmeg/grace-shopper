@@ -60,7 +60,8 @@ router.delete('/:id', async (req, res, next) => {
     const user = await User.findByPk(id);
 
     if (user === null) {
-      const err = new Error();q
+      const err = new Error();
+      q;
       err.status = 404;
       throw err;
     }
@@ -86,7 +87,7 @@ router.get('/:id', async (req, res, next) => {
 router.get('/:id/cart', async (req, res, next) => {
   try {
     const [cart] = await Order.findAll({
-      attributes: ['id','billingInfo','shippingInfo'],
+      attributes: ['id', 'billingInfo', 'shippingInfo', 'completed'],
       where: {
         userId: req.params.id,
         completed: false,
@@ -100,8 +101,11 @@ router.get('/:id/cart', async (req, res, next) => {
       where: {
         orderId: cart.id,
       },
-      include: {model: Album, attributes: ['id', 'price','title','artistName','image']},
-  });
+      include: {
+        model: Album,
+        attributes: ['id', 'price', 'title', 'artistName', 'image'],
+      },
+    });
 
     res.json({ ...cart.dataValues, items });
   } catch (err) {
