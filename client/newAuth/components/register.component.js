@@ -27,15 +27,15 @@ const email = (value) => {
   }
 };
 
-const vusername = (value) => {
-  if (value.length < 3 || value.length > 20) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The username must be between 3 and 20 characters.
-      </div>
-    );
-  }
-};
+// const vusername = (value) => {
+//   if (value.length < 3 || value.length > 20) {
+//     return (
+//       <div className="alert alert-danger" role="alert">
+//         The username must be between 3 and 20 characters.
+//       </div>
+//     );
+//   }
+// };
 
 const vpassword = (value) => {
   if (value.length < 6 || value.length > 40) {
@@ -51,23 +51,23 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.handleRegister = this.handleRegister.bind(this);
-    this.onChangeUsername = this.onChangeUsername.bind(this);
+    // this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
 
     this.state = {
-      username: "",
+      // username: "",
       email: "",
       password: "",
       successful: false,
     };
   }
 
-  onChangeUsername(e) {
-    this.setState({
-      username: e.target.value,
-    });
-  }
+  // onChangeUsername(e) {
+  //   this.setState({
+  //     username: e.target.value,
+  //   });
+  // }
 
   onChangeEmail(e) {
     this.setState({
@@ -93,7 +93,8 @@ class Register extends Component {
     if (this.checkBtn.context._errors.length === 0) {
       this.props
         .dispatch(
-          register(this.state.username, this.state.email, this.state.password)
+          // register(this.state.username, this.state.email, this.state.password)
+          register(this.state.email, this.state.password)
         )
         .then(() => {
           this.setState({
@@ -128,7 +129,7 @@ class Register extends Component {
           >
             {!this.state.successful && (
               <div>
-                <div className="form-group">
+                {/* <div className="form-group">
                   <label htmlFor="username">Username</label>
                   <Input
                     type="text"
@@ -138,7 +139,7 @@ class Register extends Component {
                     onChange={this.onChangeUsername}
                     validations={[required, vusername]}
                   />
-                </div>
+                </div> */}
 
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
@@ -198,7 +199,7 @@ class Register extends Component {
 }
 
 function mapStateToProps(state) {
-  const { message } = state.message;
+  const message = state.message;
   return {
     message,
   };
