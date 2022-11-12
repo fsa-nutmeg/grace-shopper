@@ -47,4 +47,47 @@ form div {
 .price {
   color: red;
   font-weight: bolder;
+  display: flex;
+  justify-content: center;
+}
+
+.cart-btn-grp {
+  font-weight: bold;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.cart-btn:hover {
+  cursor: pointer;
+}
+
+/*** CHECKOUT ***/
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.form-label {
+  font-weight: bold;
+  display: flex;
+  min-width: 8em;
+}
+
+.mb-3 {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.checkout-btn-grp {
+  display: flex;
+  justify-content: center;
+}
+
+.checkout-select-grp {
+  display: flex;
+  flex-direction: row;
+}
+
+.checkout-btn-grp > .btn {
+  margin: 0 1em;
 }
