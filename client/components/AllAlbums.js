@@ -2,6 +2,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCardImage,
+} from 'mdb-react-ui-kit';
 
 import { fetchAlbums } from "../store/allAlbums";
 
@@ -28,6 +35,7 @@ export class AllAlbums extends React.Component {
     const albums = this.props.albums;
     return (
       <div>
+        <div className='allAlbums-title'>All Albums</div>
         <div className="allAlbums">
           {albums.length ? (
             albums.map((album) => (
@@ -35,8 +43,13 @@ export class AllAlbums extends React.Component {
                 <form onSubmit={(ev) => ev.preventDefault()}></form>
                 <Link to={`/albums/${album.id}`} key={album.id}>
                   <div className="specificAlbum" key={album.id}>
-                    <p>{album.title}</p>
-                    <img src={album.image} width="auto" height="200" />
+                    <MDBCard className='albums-view'style={{ width: '18rem' }}>
+                          <MDBCardImage src={album.image} position='top' alt='...' />
+                          <MDBCardBody>
+                            <MDBCardTitle className='album-title'>{album.title}</MDBCardTitle>
+                            <MDBCardText className='price'>{`$${album.price}`}</MDBCardText>
+                          </MDBCardBody>
+                        </MDBCard>
                   </div>
                 </Link>
               </div>
@@ -49,6 +62,8 @@ export class AllAlbums extends React.Component {
     );
   }
 }
+
+
 
 const mapState = (state) => {
   return { albums: state.albums };
