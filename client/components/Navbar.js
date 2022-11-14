@@ -7,7 +7,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { LinkContainer } from "react-router-bootstrap";
 import { me } from "../store";
 import { fetchSingleUser } from "../store/singleUser";
-import { User } from "../../server/db/";
+// import { User } from "../../server/db/";
 
 class Navbars extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class Navbars extends Component {
   }
   componentDidMount(prev) {
     this.props.loadInitialData();
-    this.fetchSingleUser(User.findByToken(window.localStorage.token));
+    // this.fetchSingleUser(User.findByToken(window.localStorage.token));
     this.setState({ userId: this.props.user.id });
   }
   componentDidUpdate(prev) {}
@@ -46,7 +46,7 @@ class Navbars extends Component {
                     <NavDropdown.Item onClick={logout}>
                       Log Out
                     </NavDropdown.Item>
-                    <NavDropdown.Item href={`/users/${this.state.userId}`}>
+                    <NavDropdown.Item href={`/users/${this.props.user.id}`}>
                       User Info
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
