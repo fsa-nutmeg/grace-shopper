@@ -1,14 +1,25 @@
-const router = require('express').Router();
+const router = require("express").Router();
 const {
   models: { User, Order, OrderAlbum, Album },
-} = require('../db');
+} = require("../db");
 module.exports = router;
 
+const requireToken = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization;
+    const user = await User.findByToken(token);
+    req.user = user;
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
 // GET /api/users (Get All Users)
-router.get('/', async (req, res, next) => {
+router.get("/", requireToken, async (req, res, next) => {
   try {
     const users = await User.findAll({
-      attributes: ['id', 'email', 'address', 'isAdmin'],
+      attributes: ["id", "email", "address", "isAdmin"],
     });
     res.send(users);
   } catch (err) {
@@ -17,7 +28,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // POST /api/users (Create User)
-router.post('/', async (req, res, next) => {
+router.post("/", requireToken, async (req, res, next) => {
   try {
     // requires email & password in req.body
     const user = req.body;
@@ -29,7 +40,7 @@ router.post('/', async (req, res, next) => {
 });
 
 // PUT /api/users (Edit User)
-router.put('/', async (req, res, next) => {
+router.put("/", requireToken, async (req, res, next) => {
   try {
     // requires id (of user) in req.body
     const updates = req.body;
@@ -54,14 +65,13 @@ router.put('/', async (req, res, next) => {
 });
 
 // DELETE /api/users/:id (Delete User)
-router.delete('/:id', async (req, res, next) => {
+router.delete("/:id", requireToken, async (req, res, next) => {
   try {
     const { id } = req.params;
     const user = await User.findByPk(id);
 
     if (user === null) {
       const err = new Error();
-      q;
       err.status = 404;
       throw err;
     }
@@ -74,9 +84,9 @@ router.delete('/:id', async (req, res, next) => {
 });
 
 // GET /api/users/:userId (Get One User)
-router.get('/:id', async (req, res, next) => {
+router.get("/:id", requireToken, async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.params.id);
+    const user = await User.findByToken(req.headers.authorization);
     res.send(user);
   } catch (err) {
     next(err);
@@ -84,10 +94,10 @@ router.get('/:id', async (req, res, next) => {
 });
 
 // GET /api/users/:userId/cart (Get Cart)
-router.get('/:id/cart', async (req, res, next) => {
+router.get("/:id/cart", requireToken, async (req, res, next) => {
   try {
     const [cart] = await Order.findAll({
-      attributes: ['id', 'billingInfo', 'shippingInfo', 'completed'],
+      attributes: ["id", "billingInfo", "shippingInfo", "completed"],
       where: {
         userId: req.params.id,
         completed: false,
@@ -97,13 +107,13 @@ router.get('/:id/cart', async (req, res, next) => {
     if (!cart) res.status(404).send({});
 
     const items = await OrderAlbum.findAll({
-      attributes: ['id', 'price', 'quantity'],
+      attributes: ["id", "price", "quantity"],
       where: {
         orderId: cart.id,
       },
       include: {
         model: Album,
-        attributes: ['id', 'price', 'title', 'artistName', 'image'],
+        attributes: ["id", "price", "title", "artistName", "image"],
       },
     });
 
