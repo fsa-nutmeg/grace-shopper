@@ -7,6 +7,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { LinkContainer } from "react-router-bootstrap";
 import { me } from "../store";
 import { fetchSingleUser } from "../store/singleUser";
+import { User } from "../../server/db/";
 
 class Navbars extends Component {
   constructor(props) {
@@ -15,11 +16,10 @@ class Navbars extends Component {
   }
   componentDidMount(prev) {
     this.props.loadInitialData();
+    this.fetchSingleUser(User.findByToken(window.localStorage.token));
     this.setState({ userId: this.props.user.id });
   }
-  componentDidUpdate(prev) {
-    this.props.fetchSingleUser();
-  }
+  componentDidUpdate(prev) {}
   // fetchSingleUser
 
   render() {
@@ -28,10 +28,6 @@ class Navbars extends Component {
       window.localStorage.removeItem("token");
       window.location.replace("/home");
     }
-    const id = 1;
-    // console.log("this.props", this.props);
-    // console.log("this.state", this.state);
-    // console.log("userId", this.props.user.id);
 
     return (
       <div>

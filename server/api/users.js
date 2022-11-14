@@ -72,7 +72,6 @@ router.delete("/:id", requireToken, async (req, res, next) => {
 
     if (user === null) {
       const err = new Error();
-      q;
       err.status = 404;
       throw err;
     }
@@ -87,7 +86,7 @@ router.delete("/:id", requireToken, async (req, res, next) => {
 // GET /api/users/:userId (Get One User)
 router.get("/:id", requireToken, async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.params.id);
+    const user = await User.findByToken(req.headers.authorization);
     res.send(user);
   } catch (err) {
     next(err);
