@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
-import { Login, Signup } from "./components/AuthForm";
+// import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import { me } from "./store";
 import AllAlbums from "./components/AllAlbums.js";
 import SingleAlbum from "./components/SingleAlbum.js";
 import SingleUser from "./components/User";
+import Login from "./newAuth/components/login.component";
+import Register from "./newAuth/components/register.component";
 /**
  * COMPONENT
  */
@@ -32,7 +34,7 @@ class Routes extends Component {
           <Switch>
             <Route path="/" exact component={Login} />
             <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
+            <Route path="/signup" component={Register} />
             <Route path="/home" component={Home} />
             <Route exact path="/albums" component={AllAlbums} />
             <Route exact path="/albums/:albumId" component={SingleAlbum} />
