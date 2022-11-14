@@ -97,6 +97,7 @@ router.get("/:id", requireToken, async (req, res, next) => {
 router.get("/:id/cart", requireToken, async (req, res, next) => {
   try {
     const [cart] = await Order.findAll({
+      attributes: ["id", "billingInfo", "shippingInfo", "completed"],
       where: {
         userId: req.params.id,
         completed: false,
@@ -106,10 +107,14 @@ router.get("/:id/cart", requireToken, async (req, res, next) => {
     if (!cart) res.status(404).send({});
 
     const items = await OrderAlbum.findAll({
+      attributes: ["id", "price", "quantity"],
       where: {
         orderId: cart.id,
       },
-      include: [Album],
+      include: {
+        model: Album,
+        attributes: ["id", "price", "title", "artistName", "image"],
+      },
     });
 
     res.json({ ...cart.dataValues, items });

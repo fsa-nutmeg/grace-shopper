@@ -50,7 +50,7 @@ class Navbars extends Component {
                       User Info
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">Cart</NavDropdown.Item>
+                    <NavDropdown.Item href="/cart">Cart</NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
                 {/* <Nav>
