@@ -7,8 +7,7 @@ import { me } from "./store";
 import AllAlbums from "./components/AllAlbums.js";
 import SingleAlbum from "./components/SingleAlbum.js";
 import SingleUser from "./components/User";
-import Login from "./newAuth/components/login.component";
-import Register from "./newAuth/components/register.component";
+import { Login, Signup } from "./components/AuthForm";
 /**
  * COMPONENT
  */
@@ -34,7 +33,7 @@ class Routes extends Component {
           <Switch>
             <Route path="/" exact component={Login} />
             <Route path="/login" component={Login} />
-            <Route path="/signup" component={Register} />
+            <Route path="/signup" component={Signup} />
             <Route path="/home" component={Home} />
             <Route exact path="/albums" component={AllAlbums} />
             <Route exact path="/albums/:albumId" component={SingleAlbum} />
