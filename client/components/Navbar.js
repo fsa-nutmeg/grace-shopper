@@ -34,7 +34,7 @@ class Navbars extends Component {
         {isLoggedIn ? (
           <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
-              <Navbar.Brand href="/home">Nutmeg Records</Navbar.Brand>
+              <Navbar.Brand href="/home">High Rise Records</Navbar.Brand>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
@@ -65,7 +65,7 @@ class Navbars extends Component {
         ) : (
           <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
-              <Navbar.Brand href="/home">Nutmeg Records</Navbar.Brand>
+              <Navbar.Brand href="/home">High Rise Records</Navbar.Brand>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
