@@ -20,10 +20,15 @@ export const updateCart = updates => {
 };
 
 //THUNK CREATORS
-export const fetchCartInfo = userId => {
+export const fetchCartInfo = () => {
+  const token = window.localStorage.getItem('token');
   return async dispatch => {
     try {
-      const { data } = await axios.get(`/api/users/${userId}/cart`);
+      const { data } = await axios.get(`/api/orders/cart`, {
+        headers: {
+          authorization: token,
+        },
+      });
       delete data.items;
       dispatch(setCartInfo(data));
     } catch (err) {

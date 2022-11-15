@@ -28,7 +28,7 @@ const genres = ['pop', 'rap', 'rock', 'electronic', 'country', 'bluegrass'];
 
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
-  console.log('db synced!');
+  console.log('db synced... (may take a minute)');
 
   // get top 20 artists
   const topArtistsURL = `http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=${USER_ID}&format=json`;
@@ -117,7 +117,7 @@ async function seed() {
   await User.create(admin);
 
   // Creating Orders
-  for (let i = 1; i < 21; i++) {
+  for (let i = 1; i < 32; i++) {
     const order = {};
     order.shippingInfo =
       faker.address.streetAddress() +
@@ -136,15 +136,24 @@ async function seed() {
     await Order.create(order);
   }
   // Order Items
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 100; i++) {
     const orderAlbums = {};
     orderAlbums.price = prices[Math.floor(Math.random() * 4)];
     orderAlbums.quantity = Math.ceil(Math.random() * 3);
     orderAlbums.albumId = Math.ceil(Math.random() * 30);
-    orderAlbums.orderId = Math.ceil(Math.random() * 20);
+    orderAlbums.orderId = Math.ceil(Math.random() * NUM_USERS);
     await OrderAlbum.create(orderAlbums);
   }
-  console.log(`seeded grace-shopper successfully`);
+
+  for (let i = 0; i < 5; i += 1) {
+    const orderAlbums = {};
+    orderAlbums.price = prices[Math.floor(Math.random() * 4)];
+    orderAlbums.quantity = Math.ceil(Math.random() * 3);
+    orderAlbums.albumId = Math.ceil(Math.random() * 30);
+    orderAlbums.orderId = 31;
+    await OrderAlbum.create(orderAlbums);
+  }
+  console.log(`seeded grace-shopper successfully!!!`);
 }
 
 /*
@@ -160,7 +169,7 @@ async function runSeed() {
     console.error(err);
     process.exitCode = 1;
   } finally {
-    console.log('closing db connection');
+    console.log('closing db connection...');
     await db.close();
     console.log('db connection closed');
   }

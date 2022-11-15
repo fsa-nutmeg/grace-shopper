@@ -37,10 +37,14 @@ export const getCartItems = albums => {
 };
 
 // THUNK CREATORS
-export const fetchCart = userId => {
+export const fetchCart = () => {
+  const token = window.localStorage.getItem('token');
   return async dispatch => {
     try {
-      const { data } = await axios.get(`/api/users/${userId}/cart`);
+      const { data } = await axios.get('/api/orders/cart', {
+        headers: { authorization: token },
+      });
+
       dispatch(getCartItems(data.items));
     } catch (err) {
       console.log(err);
