@@ -32,7 +32,7 @@ class Navbars extends Component {
     return (
       <div>
         {isLoggedIn ? (
-          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Navbar collapseOnSelect expand="lg" bg="info" variant="dark">
             <Container>
               <Navbar.Brand href="/home">High Rise Records</Navbar.Brand>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -63,7 +63,7 @@ class Navbars extends Component {
             </Container>
           </Navbar>
         ) : (
-          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Navbar collapseOnSelect expand="lg" bg="info" variant="dark">
             <Container>
               <Navbar.Brand href="/home">High Rise Records</Navbar.Brand>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />

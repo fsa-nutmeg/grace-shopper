@@ -179,3 +179,16 @@ img {
 .login-form {
   display: block;
 }
+
+.carousel {
+  display: "flex";
+  /* margin: 100%; */
+  align-items: center;
+  max-width: 100%;
+  height: auto;
+}
+
+.imgCarousel {
+  max-width: 50%;
+  max-height: auto;
+}

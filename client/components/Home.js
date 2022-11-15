@@ -1,15 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
-import Carousel from "./Carousel";
+import AllAlbums from "./AllAlbums";
+import ImgCarousel from "./Carousel";
+
 /**
  * COMPONENT
  */
-export const Home = (props) => {
-  const { username } = props;
+export const Home = () => {
+  // const { username } = props;
 
   return (
     <div>
-      <Carousel />
+      <ImgCarousel />
+      {/* <AllAlbums /> */}
     </div>
   );
 };
