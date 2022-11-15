@@ -9,7 +9,7 @@ import CartAlbumCard from './CartAlbumCard';
 import CompletedOrder from './CompletedOrder';
 import Button from 'react-bootstrap/Button';
 
-const userId = 18;
+const userId = 5;
 
 export class Cart extends React.Component {
   constructor(props) {
