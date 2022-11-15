@@ -2,7 +2,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
 import {
   fetchSingleAlbum,
   deleteAlbum,
@@ -35,67 +36,30 @@ export class SingleAlbum extends React.Component {
   render() {
     console.log("props", this.props);
     console.log("state", this.state);
-
-    return (
-      <div>
-        {this.props.singleAlbum.title ? (
-          <div>
-            <div>
-              {this.props.singleAlbum.staffPick ? (
-                <div className="staffPick">STAFF PICK</div>
-              ) : (
-                <div></div>
-              )}
-            </div>
-            <div id="single-singleAlbum-detail">
-              <div>
-                <p>Title:</p>
-                <img
-                  src={this.props.singleAlbum.image}
-                  width="auto"
-                  height="400px"
-                />
-                <p className="single-singleAlbum-detail">
-                  {this.props.singleAlbum.title}
-                </p>
-                <p>Artist:</p>
-                <p className="single-singleAlbum-detail">
-                  {this.props.singleAlbum.artistName}
-                </p>
-                <p className="single-singleAlbum-detail">
-                  {this.props.singleAlbum.description}
-                </p>
-                <p>Quantity:</p>
-                <p className="single-singleAlbum-detail">
-                  {this.props.singleAlbum.quantity}
-                </p>
-                <p>Tracks:</p>
-                <p className="single-singleAlbum-detail">
-                  {this.props.singleAlbum.tracks}
-                </p>
-                <form onSubmit={(ev) => ev.preventDefault()}>
-                  <button
-                    type="submit"
-                    onClick={(event) => {
-                      if (window.confirm("Are you sure?")) {
-                        event.preventDefault();
-                        this.props.deleteAlbum(this.props.singleAlbum.id);
-                      }
-                    }}
-                  >
-                    REMOVE ALBUM FROM CATALOG
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div>Album Has Been Removed From The Catalog...Sorry </div>
-        )}
-      </div>
-    );
-  }
+if(!this.props.singleAlbum.title) {
+  return <div>loading album...</div>
 }
+    return (
+      <div className="singleAlbum-container">
+      <div className="card-container">
+        <Card className='singleAlbum-card'>
+      <Card.Img variant="top" src={this.props.singleAlbum.image} />
+      <Card.Body>
+        <Card.Title>{this.props.singleAlbum.title}</Card.Title>
+        <Card.Text>
+        {this.props.singleAlbum.description}
+        </Card.Text>
+        <Card.Link href="#">add to cart</Card.Link>
+      </Card.Body>
+      <ListGroup className="list-group-flush">
+        {this.props.singleAlbum.tracks.map((track, i) => (
+        <ListGroup.Item>{i+1}. {track}</ListGroup.Item>))}
+      </ListGroup>
+    </Card>
+    </div>
+    </div>
+  )
+}}
 
 const mapState = (state) => {
   return {
@@ -106,8 +70,6 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getSingleAlbum: (id) => dispatch(fetchSingleAlbum(id)),
-    deleteAlbum: (id) => dispatch(deleteAlbum(id)),
-    updateAlbum: (singleAlbum) => dispatch(updateAlbum(singleAlbum)),
   };
 };
 

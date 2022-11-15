@@ -8,8 +8,7 @@ import Checkout from './Checkout';
 import CartAlbumCard from './CartAlbumCard';
 import CompletedOrder from './CompletedOrder';
 import Button from 'react-bootstrap/Button';
-
-const userId = 18;
+import { addAlbumToGuestCart } from '../store/guestCartInventory';
 
 export class Cart extends React.Component {
   constructor(props) {
@@ -25,12 +24,20 @@ export class Cart extends React.Component {
     this.handleQtyChange = this.handleQtyChange.bind(this);
   }
   componentDidMount() {
-    this.props.getCart(userId);
-    this.props.getCartInfo(userId);
+    this.props.getCart();
+    this.props.getCartInfo();
   }
 
   componentDidUpdate(prevProps) {
     const changes = {};
+
+    const prevGuestInventory = JSON.stringify(prevProps.guestInventory);
+    const currGuestInventory = JSON.stringify(this.props.guestInventory);
+
+    if (prevGuestInventory !== currGuestInventory) {
+      if (currGuestInventory.length)
+        changes.inventory = this.props.guestInventory;
+    }
 
     const prevInventory = JSON.stringify(prevProps.inventory);
     const currInventory = JSON.stringify(this.props.inventory);
@@ -47,8 +54,16 @@ export class Cart extends React.Component {
     if (
       Boolean(prevProps.info.completed) !== Boolean(this.props.info.completed)
     ) {
-      console.log('COMPLETION STATUS CHANGED!!!!');
       changes.completed = this.props.info.completed;
+    }
+
+    if (
+      Boolean(prevProps.guestInfo.completed) !==
+      Boolean(this.props.guestInfo.completed)
+    ) {
+      this.props.getOrder(+this.props.guestInfo.id);
+      changes.completed = this.props.guestInfo.completed;
+      changes.orderId = this.props.guestInfo.id;
     }
 
     if (Object.keys(changes).length) {
@@ -69,8 +84,6 @@ export class Cart extends React.Component {
   render() {
     const { inventory, checkout, completed, orderId } = this.state;
     const { updateInfo, getOrder } = this.props;
-
-    console.log('COMPLETION FROM CART RENDER.....', completed);
 
     if (!inventory.length)
       return <div className='cart-container'>Nothing In Cart</div>;
@@ -119,18 +132,24 @@ export class Cart extends React.Component {
 
 const mapState = state => {
   return {
+    auth: state.auth,
     inventory: state.cartInventory,
+    guestInventory: state.guestInventory,
+    guestInfo: state.guestInfo,
     info: state.cartInfo,
+    user: state.singleUser,
+    order: state.singleOrder,
   };
 };
 
 const mapDispatch = dispatch => {
   return {
-    getCart: userId => dispatch(fetchCart(userId)),
-    getCartInfo: userId => dispatch(fetchCartInfo(userId)),
+    getCart: () => dispatch(fetchCart()),
+    getCartInfo: () => dispatch(fetchCartInfo()),
     changeQty: (id, qty) => dispatch(changeItemQty(id, qty)),
     updateInfo: (id, updates) => dispatch(updateCartInfo(id, updates)),
     getOrder: id => dispatch(fetchSingleOrder(id)),
+    addToGuestCart: albumId => dispatch(addAlbumToGuestCart(albumId)),
   };
 };
 export default connect(mapState, mapDispatch)(Cart);

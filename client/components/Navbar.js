@@ -28,7 +28,6 @@ class Navbars extends Component {
       window.localStorage.removeItem("token");
       window.location.replace("/home");
     }
-
     return (
       <div>
         {isLoggedIn ? (
@@ -64,6 +63,17 @@ class Navbars extends Component {
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/cart">Cart</NavDropdown.Item>
+                  </NavDropdown>
+                  <NavDropdown title="Admin Tools">
+                    <NavDropdown.Item href={`/admin/allusers`}>
+                      All User Info
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href={`/admin/allalbums`}>
+                      Edit Existing Albums
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href={`/admin/addalbum`}>
+                      Add New Album
+                    </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
                 {/* <Nav>
