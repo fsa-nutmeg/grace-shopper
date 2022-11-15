@@ -2,8 +2,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
-import { fetchSingleAlbum } from "../store/singleAlbum";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import {
+  fetchSingleAlbum,
+  deleteAlbum,
+  updateAlbum,
+} from "../store/singleAlbum";
 
 export class SingleAlbum extends React.Component {
   constructor(props) {
@@ -29,6 +34,9 @@ export class SingleAlbum extends React.Component {
   }
 
   render() {
+    console.log("props", this.props);
+    console.log("state", this.state);
+
     return (
       <div>
         {this.props.singleAlbum.title ? (
@@ -66,6 +74,19 @@ export class SingleAlbum extends React.Component {
                 <p className="single-singleAlbum-detail">
                   {this.props.singleAlbum.tracks}
                 </p>
+                <form onSubmit={(ev) => ev.preventDefault()}>
+                  <button
+                    type="submit"
+                    onClick={(event) => {
+                      if (window.confirm("Are you sure?")) {
+                        event.preventDefault();
+                        this.props.deleteAlbum(this.props.singleAlbum.id);
+                      }
+                    }}
+                  >
+                    REMOVE ALBUM FROM CATALOG
+                  </button>
+                </form>
               </div>
             </div>
           </div>
