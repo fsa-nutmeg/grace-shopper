@@ -10,6 +10,8 @@ import singleUserReducer from './singleUser';
 import cartInventoryReducer from './cartInventory';
 import cartInfoReducer from './cartInfo';
 import singleOrderReducer from './singleOrder';
+import guestCartInventoryReducer from './guestCartInventory';
+import guestCartInfoReducer from './guestCartInfo';
 
 const reducer = combineReducers({
   auth: auth,
@@ -19,6 +21,8 @@ const reducer = combineReducers({
   user: singleUserReducer,
   cartInventory: cartInventoryReducer,
   cartInfo: cartInfoReducer,
+  guestInventory: guestCartInventoryReducer,
+  guestInfo: guestCartInfoReducer,
   singleOrder: singleOrderReducer,
 });
 const middleware = composeWithDevTools(

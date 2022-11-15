@@ -5,7 +5,7 @@ import Table from 'react-bootstrap/Table';
 const CompletedOrder = props => {
   const { order } = props;
 
-  if (!Object.keys(order)) return <div>Loading Order...</div>;
+  if (!Object.keys(order).length) return <div>Loading Order...</div>;
 
   const { shippingInfo, items } = order;
   // normalize data before render

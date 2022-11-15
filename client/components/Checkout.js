@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import { UsaStates } from 'usa-states';
+import { connect } from 'react-redux';
+import { guestCartCheckout } from '../store/guestCartInfo';
 
 // makes a list of 51 state abbreviations (includes DC)
 const states = Object.values(new UsaStates().states).map(
@@ -88,7 +90,15 @@ export class Checkout extends Component {
         CSC,
       } = this.state;
 
-      const { orderId, updateInfo, getOrder } = this.props;
+      const {
+        orderId,
+        updateInfo,
+        getOrder,
+        auth,
+        guestInfo,
+        guestInventory,
+        guestCheckout,
+      } = this.props;
 
       const order = {};
 
@@ -97,9 +107,14 @@ export class Checkout extends Component {
       order.billingInfo =
         cardType + ': ' + cardNumber + ', ' + name + ', ' + CSC;
       order.completed = true;
-
-      updateInfo(+orderId, order);
-      getOrder(+orderId);
+      
+      if (auth.id) {
+        updateInfo(+orderId, order);
+        getOrder(+orderId);
+      } else {
+        guestCheckout(guestInventory, order.shippingInfo, order.billingInfo);
+      }
+      //
     }
   }
 
@@ -191,4 +206,17 @@ export class Checkout extends Component {
   }
 }
 
-export default Checkout;
+const mapState = state => ({
+  auth: state.auth,
+  guestInfo: state.guestInfo,
+  inventory: state.cartInventory,
+  guestInventory: state.guestInventory,
+  info: state.cartInfo,
+});
+
+const mapDispatch = dispatch => ({
+  guestCheckout: (items, shippingInfo, billingInfo) =>
+    dispatch(guestCartCheckout(items, shippingInfo, billingInfo)),
+});
+
+export default connect(mapState, mapDispatch)(Checkout);
