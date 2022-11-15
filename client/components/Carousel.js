@@ -33,42 +33,42 @@ export class ImgCarousel extends React.Component {
               <img
                 className="imgCarousel"
                 alt=""
-                src="https://www.udiscovermusic.com/wp-content/uploads/2015/10/Joy-Division-Unknown-Pleasures.jpg"
+                src="https://i.discogs.com/5I1sHhyJ8DOW0tJKFzFXfuLrpQ1xDmDQCjjFA0n27kY/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTk0MTIz/ODMtMTY0NzI4NjA1/OS0zMzY3LmpwZWc.jpeg"
               />
             </div>
             <div key={2} className="carousel">
               <img
                 className="imgCarousel"
                 alt=""
-                src="https://www.udiscovermusic.com/wp-content/uploads/2015/10/Joy-Division-Unknown-Pleasures.jpg"
+                src="https://i.discogs.com/kNfYUBXYqME4lUL1xJ-UDET4z41wIuq_PZmKqE6R-ds/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMTM1/MjE2LTE2NTk3MTQy/MTktMzYzOS5qcGVn.jpeg"
               />
             </div>
             <div key={3} className="carousel">
               <img
                 className="imgCarousel"
                 alt=""
-                src="https://www.udiscovermusic.com/wp-content/uploads/2015/10/Joy-Division-Unknown-Pleasures.jpg"
+                src="https://i.discogs.com/magzKpYFpZOt3jBQlyxci_iMxndbvmmLOyydD90Xc9M/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQzNDc4/MDgtMTM2NTUzMzI1/Ny00MTMyLmpwZWc.jpeg"
               />
             </div>
             <div key={4} className="carousel">
               <img
                 className="imgCarousel"
                 alt=""
-                src="https://www.udiscovermusic.com/wp-content/uploads/2015/10/Joy-Division-Unknown-Pleasures.jpg"
+                src="https://i.discogs.com/KemiCJGxZFgdN8Xl7NcE6sluCpZIF-IpPAqsok3zkMU/rs:fit/g:sm/q:90/h:600/w:589/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU4MDU5/NjUtMTYzNzA4MDU3/My00MjU1LmpwZWc.jpeg"
               />
             </div>
             <div key={5} className="carousel">
               <img
                 className="imgCarousel"
                 alt=""
-                src="https://www.udiscovermusic.com/wp-content/uploads/2015/10/Joy-Division-Unknown-Pleasures.jpg"
+                src="https://i.discogs.com/hFeDXzjck0yisSqS_zFsociHFJrbBSZa7h-1C5dEvl4/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwNTg5/NTU0LTE1MDE3OTM3/NDgtNDE4OC5qcGVn.jpeg"
               />
             </div>
             <div key={6} className="carousel">
               <img
                 className="imgCarousel"
                 alt=""
-                src="https://www.udiscovermusic.com/wp-content/uploads/2015/10/Joy-Division-Unknown-Pleasures.jpg"
+                src="https://i.discogs.com/fuqdnfhlfcknjJ2BhWw1b2Y9d3Lo5AtFqeTQfGPjuRc/rs:fit/g:sm/q:90/h:537/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5Njkz/OTMzLTE2Mjg5ODAx/NDItMjM2MC5qcGVn.jpeg"
               />
             </div>
           </Carousel>
