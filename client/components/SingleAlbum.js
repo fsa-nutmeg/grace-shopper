@@ -2,8 +2,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
 import {
   fetchSingleAlbum,
   deleteAlbum,
@@ -56,12 +56,10 @@ if(!this.props.singleAlbum.title) {
         <ListGroup.Item>{i+1}. {track}</ListGroup.Item>))}
       </ListGroup>
     </Card>
-
-      </div>
-      </div>
-    );
-  }
-}
+    </div>
+    </div>
+  )
+}}
 
 const mapState = (state) => {
   return {
@@ -72,8 +70,6 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getSingleAlbum: (id) => dispatch(fetchSingleAlbum(id)),
-    deleteAlbum: (id) => dispatch(deleteAlbum(id)),
-    updateAlbum: (singleAlbum) => dispatch(updateAlbum(singleAlbum)),
   };
 };
 

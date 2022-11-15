@@ -5,6 +5,7 @@ import axios from "axios";
 const SET_SINGLE_ALBUM = "SET_SINGLE_ALBUM";
 const DELETE_ALBUM = "DELETE_ALBUM";
 const UPDATE_ALBUM = "UPDATE_ALBUM";
+const CREATE_ALBUM = "CREATE_ALBUM";
 
 // ACTION CREATORS
 
@@ -25,6 +26,13 @@ const _deleteAlbum = (singleAlbum) => {
 const _updateAlbum = (singleAlbum) => {
   return {
     type: UPDATE_ALBUM,
+    singleAlbum,
+  };
+};
+
+const _createAlbum = (singleAlbum) => {
+  return {
+    type: CREATE_ALBUM,
     singleAlbum,
   };
 };
@@ -53,13 +61,26 @@ export const deleteAlbum = (id) => {
   };
 };
 
-export const updateAlbum = (singleAlbum) => {
+export const updateAlbum = (singleAlbum, history) => {
   return async (dispatch) => {
     const { data: updated } = await axios.put(
       `/api/albums/${singleAlbum.id}`,
       singleAlbum
     );
+    history.push(`/albums/${singleAlbum.id}`);
     dispatch(_updateAlbum(updated));
+  };
+};
+
+export const createAlbum = (singleAlbum, history) => {
+  return async (dispatch) => {
+    try {
+      const { data: created } = await axios.post("/api/albums", singleAlbum);
+      history.push(`/albums/${singleAlbum.id}`);
+      dispatch(_createAlbum(created));
+    } catch (err) {
+      console.log(err);
+    }
   };
 };
 
@@ -73,6 +94,8 @@ export default function singleAlbumReducer(state = initialState, action) {
     case DELETE_ALBUM:
       return {};
     case UPDATE_ALBUM:
+      return action.singleAlbum;
+    case CREATE_ALBUM:
       return action.singleAlbum;
     default:
       return state;
