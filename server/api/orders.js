@@ -35,6 +35,7 @@ router.put('/', async (req, res, next) => {
   try {
     // requires id (of order) in req.body
     const updates = req.body;
+
     const order = await Order.findByPk(updates.id);
 
     if (order === null) {
@@ -73,8 +74,8 @@ router.get('/:id', async (req, res, next) => {
       },
       include: [Album],
     });
-
-    res.json(...order.dataValues, items);
+    console.log('order from get order api..... ', order);
+    res.json({ ...order.dataValues, items });
   } catch (err) {
     next(err);
   }
