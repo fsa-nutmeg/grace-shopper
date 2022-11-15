@@ -49,14 +49,12 @@ if(!this.props.singleAlbum.title) {
         <Card.Text>
         {this.props.singleAlbum.description}
         </Card.Text>
+        <Card.Link href="#">add to cart</Card.Link>
       </Card.Body>
       <ListGroup className="list-group-flush">
         {this.props.singleAlbum.tracks.map((track, i) => (
         <ListGroup.Item>{i+1}. {track}</ListGroup.Item>))}
       </ListGroup>
-      <Card.Body>
-        <Card.Link href="#">add to cart</Card.Link>
-      </Card.Body>
     </Card>
 
       </div>
