@@ -1,7 +1,7 @@
 {
   "name": "grace-shopper",
   "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "This is a model of our record store. We used React, Express, Bootstrap, Sequelize, RESTful APIs, Redux, Node.js, Bcrpyt, JWT, Webpack, Faker.js, and the LastFM API. Our store has Admin, logged in user, and guest user capabilities. We also offer a persistent cart so users can check back in with albums they were shopping for.",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -17,7 +17,7 @@
     "test:dev:models": "npm run test:dev -- --grep=model",
     "test:dev:routes": "npm run test:dev -- --grep=route"
   },
-  "author": "Fullstack Academy of Code",
+  "author": "Seth Way, Ashton Griffin, Riley Mack, and Jeff Albaral",
   "license": "MIT",
   "dependencies": {
     "@faker-js/faker": "^7.6.0",

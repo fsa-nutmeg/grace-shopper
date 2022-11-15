@@ -12,7 +12,7 @@ export const Home = () => {
   return (
     <div>
       <ImgCarousel />
-      {/* <AllAlbums /> */}
+      <AllAlbums />
     </div>
   );
 };

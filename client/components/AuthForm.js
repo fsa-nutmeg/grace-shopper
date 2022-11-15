@@ -33,7 +33,7 @@ const AuthForm = (props) => {
             <input name="password" type="password" />
           </div>
           <div>
-            <button class="button-12" type="submit">
+            <button className="button-12" type="submit">
               {displayName}
             </button>
           </div>

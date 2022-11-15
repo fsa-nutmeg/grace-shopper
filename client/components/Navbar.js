@@ -35,14 +35,27 @@ class Navbars extends Component {
         {isLoggedIn ? (
           <Navbar collapseOnSelect expand="lg" bg="info" variant="dark">
             <Container>
-              <Navbar.Brand href="/home">High Rise Records</Navbar.Brand>
+              <Navbar.Brand
+                className="justify-content-end"
+                style={{ width: "50vw" }}
+                href="/home"
+              >
+                <img
+                  alt=""
+                  src="/test-art/vinyal_logo-removebg-preview (2).png"
+                  width="80"
+                  height="80"
+                  className="d-inline-block align-top"
+                />{" "}
+                High Rise Records
+              </Navbar.Brand>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="me-auto">
+                <Nav className="ml-auto">
                   {/* <LinkContainer to="/allAlbums"> */}
-                  <Nav.Link href="/albums">All Albums</Nav.Link>
+                  {/* <Nav.Link href="/albums">All Albums</Nav.Link> */}
                   {/* </LinkContainer> */}
-                  <Nav.Link href="#pricing">Genre</Nav.Link>
+                  {/* <Nav.Link href="#pricing">Genre</Nav.Link> */}
                   <NavDropdown title="Account" id="collasible-nav-dropdown">
                     <NavDropdown.Item onClick={logout}>
                       Log Out
@@ -83,14 +96,27 @@ class Navbars extends Component {
         ) : (
           <Navbar collapseOnSelect expand="lg" bg="info" variant="dark">
             <Container>
-              <Navbar.Brand href="/home">High Rise Records</Navbar.Brand>
+              <Navbar.Brand
+                className="justify-content-end"
+                style={{ width: "50vw" }}
+                href="/home"
+              >
+                <img
+                  alt=""
+                  src="/test-art/vinyal_logo-removebg-preview (2).png"
+                  width="80"
+                  height="80"
+                  className="d-inline-block align-top"
+                />{" "}
+                High Rise Records
+              </Navbar.Brand>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
                   {/* <LinkContainer to="/allAlbums"> */}
-                  <Nav.Link href="/albums">All Albums</Nav.Link>
+                  {/* <Nav.Link href="/albums">All Albums</Nav.Link> */}
                   {/* </LinkContainer> */}
-                  <Nav.Link href="#pricing">Genre</Nav.Link>
+                  {/* <Nav.Link href="#pricing">Genre</Nav.Link> */}
                   <NavDropdown title="Account" id="collasible-nav-dropdown">
                     <NavDropdown.Item href="/login">Log In</NavDropdown.Item>
                     <NavDropdown.Item href="/signup">Sign Up</NavDropdown.Item>
@@ -98,12 +124,6 @@ class Navbars extends Component {
                     <NavDropdown.Item href="/cart">Cart</NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
-                {/* <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              Dank memes
-            </Nav.Link>
-          </Nav> */}
               </Navbar.Collapse>
             </Container>
           </Navbar>
