@@ -9,6 +9,10 @@ import SingleAlbum from "./components/SingleAlbum.js";
 import SingleUser from "./components/User";
 import { Login, Signup } from "./components/AuthForm";
 import Cart from "./components/Cart";
+import AllUsers from "./components/Admin/AllUsers";
+import AdminAllAlbums from "./components/Admin/AdminAllAlbums";
+import EditAlbum from "./components/Admin/EditAlbum";
+import AddNewAlbum from "./components/Admin/AddNewAlbum";
 /**
  * COMPONENT
  */
@@ -29,6 +33,10 @@ class Routes extends Component {
             <Route exact path="/albums/:albumId" component={SingleAlbum} />
             <Route exact path="/users/:id" component={SingleUser} />
             <Route exact path="/cart/" component={Cart} />
+            <Route exact path="/admin/allusers/" component={AllUsers} />
+            <Route exact path="/admin/allalbums/" component={AdminAllAlbums} />
+            <Route exact path="/admin/addalbum" component={AddNewAlbum} />
+            <Route exact path="/admin/albums/:albumId" component={EditAlbum} />
 
             {/* <Redirect to="/home" /> */}
           </Switch>

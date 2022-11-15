@@ -26,12 +26,12 @@ router.post("/", async (req, res, next) => {
 });
 
 // PUT /api/albums (Update Album)
-router.put("/", async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   try {
     // requires an id in req.body
     const updates = req.body;
     const album = await Album.findByPk(updates.id);
-
+    console.log("UPDATES", updates);
     if (album === null) {
       const err = new Error();
       err.status = 404;
