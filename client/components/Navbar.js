@@ -28,13 +28,12 @@ class Navbars extends Component {
       window.localStorage.removeItem("token");
       window.location.replace("/home");
     }
-
     return (
       <div>
         {isLoggedIn ? (
-          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Navbar collapseOnSelect expand="lg" bg="info" variant="dark">
             <Container>
-              <Navbar.Brand href="/home">Nutmeg Records</Navbar.Brand>
+              <Navbar.Brand href="/home">High Rise Records</Navbar.Brand>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
@@ -52,6 +51,17 @@ class Navbars extends Component {
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/cart">Cart</NavDropdown.Item>
                   </NavDropdown>
+                  <NavDropdown title="Admin Tools">
+                    <NavDropdown.Item href={`/admin/allusers`}>
+                      All User Info
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href={`/admin/allalbums`}>
+                      Edit Existing Albums
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href={`/admin/addalbum`}>
+                      Add New Album
+                    </NavDropdown.Item>
+                  </NavDropdown>
                 </Nav>
                 {/* <Nav>
             <Nav.Link href="#deets">More deets</Nav.Link>
@@ -63,9 +73,9 @@ class Navbars extends Component {
             </Container>
           </Navbar>
         ) : (
-          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Navbar collapseOnSelect expand="lg" bg="info" variant="dark">
             <Container>
-              <Navbar.Brand href="/home">Nutmeg Records</Navbar.Brand>
+              <Navbar.Brand href="/home">High Rise Records</Navbar.Brand>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">

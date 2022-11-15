@@ -19,7 +19,8 @@ export const setAllUsers = (users) => {
 export const fetchAllUsers = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("/api/allUsers");
+      const { data } = await axios.get("/api/users");
+      console.log(data);
       dispatch(setAllUsers(data));
     } catch (err) {
       console.log(err);

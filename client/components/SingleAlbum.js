@@ -2,7 +2,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
 import {
   fetchSingleAlbum,
   deleteAlbum,
@@ -106,8 +107,6 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getSingleAlbum: (id) => dispatch(fetchSingleAlbum(id)),
-    deleteAlbum: (id) => dispatch(deleteAlbum(id)),
-    updateAlbum: (singleAlbum) => dispatch(updateAlbum(singleAlbum)),
   };
 };
 
