@@ -16,13 +16,15 @@ class Navbars extends Component {
   }
   componentDidMount(prev) {
     this.props.loadInitialData();
-    // this.fetchSingleUser(User.findByToken(window.localStorage.token));
+    this.props.fetchSingleUser();
+
     this.setState({ userId: this.props.user.id });
   }
   componentDidUpdate(prev) {}
   // fetchSingleUser
 
   render() {
+    console.log("RENDER", this.props);
     const { isLoggedIn } = this.props;
     function logout() {
       window.localStorage.removeItem("token");
@@ -51,17 +53,23 @@ class Navbars extends Component {
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/cart">Cart</NavDropdown.Item>
                   </NavDropdown>
-                  <NavDropdown title="Admin Tools">
-                    <NavDropdown.Item href={`/admin/allusers`}>
-                      All User Info
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href={`/admin/allalbums`}>
-                      Edit Existing Albums
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href={`/admin/addalbum`}>
-                      Add New Album
-                    </NavDropdown.Item>
-                  </NavDropdown>
+                  {this.props.user.isAdmin ? (
+                    <div>
+                      <NavDropdown title="Admin Tools">
+                        <NavDropdown.Item href={`/admin/allusers`}>
+                          All User Info
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href={`/admin/allalbums`}>
+                          Edit Existing Albums
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href={`/admin/addalbum`}>
+                          Add New Album
+                        </NavDropdown.Item>
+                      </NavDropdown>
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
                 </Nav>
                 {/* <Nav>
             <Nav.Link href="#deets">More deets</Nav.Link>
@@ -110,6 +118,7 @@ const mapState = (state) => {
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
     user: state.user,
+    id: state.auth.id,
   };
 };
 
