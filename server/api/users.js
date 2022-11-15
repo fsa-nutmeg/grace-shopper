@@ -16,7 +16,7 @@ const requireToken = async (req, res, next) => {
 };
 
 // GET /api/users (Get All Users)
-router.get("/", async (req, res, next) => {
+router.get("/", requireToken, async (req, res, next) => {
   try {
     const users = await User.findAll({
       attributes: ["id", "email", "address", "isAdmin"],
