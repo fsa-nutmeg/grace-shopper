@@ -36,7 +36,7 @@ class Navbars extends Component {
               <Navbar.Brand
                 className="justify-content-end"
                 style={{ width: "50vw" }}
-                href="#home"
+                href="/home"
               >
                 <img
                   alt=""
@@ -91,7 +91,7 @@ class Navbars extends Component {
               <Navbar.Brand
                 className="justify-content-end"
                 style={{ width: "50vw" }}
-                href="#home"
+                href="/home"
               >
                 <img
                   alt=""
