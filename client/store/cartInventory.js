@@ -44,8 +44,22 @@ export const fetchCart = () => {
       const { data } = await axios.get('/api/orders/cart', {
         headers: { authorization: token },
       });
-
       dispatch(getCartItems(data.items));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const addItemToCart = (albumId, orderId, price) => {
+  const token = window.localStorage.getItem('token');
+  return async dispatch => {
+    try {
+      const { data } = await axios.get('/api/orders/cart', {
+        headers: { authorization: token },
+      });
+
+      const { items } = data;
     } catch (err) {
       console.log(err);
     }
