@@ -19,14 +19,14 @@ const AuthForm = (props) => {
           alt="profile-img"
           className="login-profile-img-card"
         />
-        <form onSubmit={handleSubmit} name={name}>
-          <div>
+        <form className="login-form" onSubmit={handleSubmit} name={name}>
+          <div className="login-input">
             <label htmlFor="email">
               <small>Email: </small>
             </label>
             <input name="email" type="text" />
           </div>
-          <div>
+          <div className="login-input">
             <label htmlFor="password">
               <small>Password: </small>
             </label>

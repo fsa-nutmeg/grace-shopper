@@ -31,21 +31,23 @@ class Navbars extends Component {
     return (
       <div>
         {isLoggedIn ? (
-          <Navbar collapseOnSelect expand="lg" bg="info" variant="dark">
+          <Navbar
+            collapseOnSelect
+            expand="lg"
+            text="light"
+            bg="dark"
+            variant="dark"
+          >
             <Container>
-              <Navbar.Brand
-                className="justify-content-end"
-                style={{ width: "50vw" }}
-                href="#home"
-              >
+              <Navbar.Brand style={{ width: "50vw" }} href="#home">
                 <img
                   alt=""
-                  src="/test-art/vinyal_logo-removebg-preview (2).png"
-                  width="80"
-                  height="80"
-                  className="d-inline-block align-top"
-                />{" "}
-                High Rise Records
+                  src="/test-art/vinyal_logo-removebg-preview.png"
+                  width="150"
+                  height="150"
+                  className="d-inline-block  rounded-circle"
+                />
+                <h1>{"High Rise Records"}</h1>
               </Navbar.Brand>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
@@ -86,7 +88,13 @@ class Navbars extends Component {
             </Container>
           </Navbar>
         ) : (
-          <Navbar collapseOnSelect expand="lg" bg="info" variant="dark">
+          <Navbar
+            collapseOnSelect
+            expand="lg"
+            text="light"
+            bg="dark"
+            variant="dark"
+          >
             <Container>
               <Navbar.Brand
                 className="justify-content-end"
@@ -95,10 +103,10 @@ class Navbars extends Component {
               >
                 <img
                   alt=""
-                  src="/test-art/vinyal_logo-removebg-preview (2).png"
+                  src="/test-art/vinyal_logo-removebg-preview.png"
                   width="80"
                   height="80"
-                  className="d-inline-block align-top"
+                  className="d-inline-block align-top rounded-circle"
                 />{" "}
                 High Rise Records
               </Navbar.Brand>

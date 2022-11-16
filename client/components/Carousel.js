@@ -16,7 +16,11 @@ export class ImgCarousel extends React.Component {
         style={{
           display: "flex",
           justifyContent: "center",
-          background: "linear-gradient(to bottom, #17a2b8 0%, #6e6d70 100%)",
+          background: "linear-gradient(to top, #17a2b8 0%, #6e6d70 100%)",
+          backgroundImage: "url(https://wallpaperaccess.com/full/3159298.jpg)",
+          backgroundSize: "100%",
+          backgroundRepeat: "no-repeat",
+          marginBottom: "-50px",
         }}
       >
         <div className="carousel">

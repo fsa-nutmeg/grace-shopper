@@ -51,7 +51,7 @@ img {
 }
 
 .price {
-  color: red;
+  color: #343a40;
   font-weight: bolder;
   display: flex;
   justify-content: center;
@@ -137,6 +137,9 @@ img {
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding: 20px;
+  background-image: linear-gradient(to bottom, #fff, #565551);
+  /* 
+  background-color: #343a40; */
 }
 
 .allAlbums-title {
@@ -151,6 +154,7 @@ img {
 .login-card-container.card {
   max-width: 350px !important;
   padding: 40px 40px;
+  align-items: center;
 }
 
 .login-card {
@@ -158,6 +162,8 @@ img {
   padding: 20px 25px 30px;
   margin: 0 auto 25px;
   margin-top: 50px;
+  max-width: 40%;
+  align-items: center;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
@@ -177,7 +183,21 @@ img {
 }
 
 .login-form {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-input {
+  align-self: auto;
+}
+
+.login-input > label {
+  min-width: 4em;
+}
+
+.login-input > input {
+  width: 100%;
 }
 
 .carousel {
@@ -189,6 +209,16 @@ img {
 }
 
 .imgCarousel {
-  max-width: 50%;
+  max-width: 40%;
   max-height: auto;
+}
+
+.navbar-brand {
+  display: inline-block;
+  flex-direction: row;
+}
+
+.navbar-brand > * {
+  display: inline;
+  align-items: center;
 }
