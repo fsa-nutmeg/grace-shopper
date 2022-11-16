@@ -1,14 +1,14 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { fetchCart, changeItemQty } from '../store/cartInventory';
-import { fetchCartInfo, updateCartInfo } from '../store/cartInfo';
-import { fetchSingleOrder } from '../store/singleOrder';
-import Checkout from './Checkout';
-import CartAlbumCard from './CartAlbumCard';
-import CompletedOrder from './CompletedOrder';
-import Button from 'react-bootstrap/Button';
-import { addAlbumToGuestCart } from '../store/guestCartInventory';
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { fetchCart, changeItemQty } from "../store/cartInventory";
+import { fetchCartInfo, updateCartInfo } from "../store/cartInfo";
+import { fetchSingleOrder } from "../store/singleOrder";
+import Checkout from "./Checkout";
+import CartAlbumCard from "./CartAlbumCard";
+import CompletedOrder from "./CompletedOrder";
+import Button from "react-bootstrap/Button";
+import { addAlbumToGuestCart } from "../store/guestCartInventory";
 
 export class Cart extends React.Component {
   constructor(props) {
@@ -26,7 +26,7 @@ export class Cart extends React.Component {
   componentDidMount() {
     this.props.getCart();
     this.props.getCartInfo();
-    if (this.props.inventory.length) {
+    if (this.props.auth.id || this.props.inventory.length) {
       this.setState({ inventory: this.props.inventory });
     } else {
       this.setState({ inventory: this.props.guestInventory });
@@ -70,7 +70,7 @@ export class Cart extends React.Component {
 
   toggleCheckout(e) {
     e.preventDefault();
-    this.setState(prevState => ({ checkout: !prevState.checkout }));
+    this.setState((prevState) => ({ checkout: !prevState.checkout }));
   }
 
   handleQtyChange(id, qty) {
@@ -83,14 +83,14 @@ export class Cart extends React.Component {
     const { updateInfo, getOrder } = this.props;
 
     if (!inventory.length)
-      return <div className='cart-container'>Nothing In Cart</div>;
+      return <div className="cart-container">Nothing In Cart</div>;
 
     const total = inventory
       .reduce((total, album) => total + album.price * album.quantity, 0)
       .toFixed(2);
 
     return (
-      <div className='cart-container'>
+      <div className="cart-container">
         <h2>{`Subtotal $${total}`}</h2>
         {completed ? (
           <CompletedOrder orderId={orderId} />
@@ -104,8 +104,8 @@ export class Cart extends React.Component {
         ) : (
           <Button onClick={this.toggleCheckout}>Checkout</Button>
         )}
-        <div className='albums-view'>
-          {inventory.map(item => {
+        <div className="albums-view">
+          {inventory.map((item) => {
             const { id, price, quantity, album } = item;
             const { image, title, artistName } = album;
             return (
@@ -127,7 +127,7 @@ export class Cart extends React.Component {
   }
 }
 
-const mapState = state => {
+const mapState = (state) => {
   return {
     auth: state.auth,
     inventory: state.cartInventory,
@@ -139,14 +139,14 @@ const mapState = state => {
   };
 };
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     getCart: () => dispatch(fetchCart()),
     getCartInfo: () => dispatch(fetchCartInfo()),
     changeQty: (id, qty) => dispatch(changeItemQty(id, qty)),
     updateInfo: (id, updates) => dispatch(updateCartInfo(id, updates)),
-    getOrder: id => dispatch(fetchSingleOrder(id)),
-    addToGuestCart: albumId => dispatch(addAlbumToGuestCart(albumId)),
+    getOrder: (id) => dispatch(fetchSingleOrder(id)),
+    addToGuestCart: (albumId) => dispatch(addAlbumToGuestCart(albumId)),
   };
 };
 export default connect(mapState, mapDispatch)(Cart);
