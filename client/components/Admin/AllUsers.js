@@ -15,11 +15,11 @@ import { fetchAllUsers } from "../../store/allUsers";
 export class AllUsers extends React.Component {
   componentDidMount() {
     this.props.getUsers();
-    console.log("props,", this.props);
   }
 
   render() {
     const users = this.props.users;
+    console.log("USERS", users);
     return (
       <div>
         <div className="allAlbums-title">All Users</div>
