@@ -4,13 +4,7 @@ import { connect } from "react-redux";
 import { fetchSingleUser } from "../store/singleUser";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import {
-  MDBCard,
-  MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
-  MDBCardImage,
-} from "mdb-react-ui-kit";
+import Card from "react-bootstrap/Card";
 
 export class SingleUser extends React.Component {
   componentDidMount() {
@@ -24,23 +18,25 @@ export class SingleUser extends React.Component {
     return (
       <div>
         {this.props.user ? (
-          <div className="specificAlbum" key={this.props.user.id}>
-            <MDBCard className="albums-view" style={{ width: "18rem" }}>
-              <MDBCardImage
+          <div className="specificAlbum-container" key={this.props.user.id}>
+            <Card className="singleAlbum-card">
+              <Card.Img
+                width="96px"
+                height="96px"
+                margin="0 auto 10px"
+                display="block"
+                border-radius="50%"
+                variant="top"
                 src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                position="top"
-                alt="..."
               />
-              <MDBCardBody>
-                <MDBCardTitle className="album-title">
-                  {this.props.user.email}
-                </MDBCardTitle>
-                <MDBCardText className="price">{`${this.props.user.address}`}</MDBCardText>
-                <MDBCardText className="album-title">{`${
+              <Card.Body>
+                <Card.Title>{this.props.user.email}</Card.Title>
+                <Card.Text className="price">{`${this.props.user.address}`}</Card.Text>
+                <Card.Text className="album-title">{`${
                   this.props.user.isAdmin ? "ADMINISTRATOR" : "USER"
-                }`}</MDBCardText>
-              </MDBCardBody>
-            </MDBCard>
+                }`}</Card.Text>
+              </Card.Body>
+            </Card>
           </div>
         ) : (
           <div>404 No User Here</div>
