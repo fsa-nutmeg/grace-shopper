@@ -54,9 +54,8 @@ class Navbars extends Component {
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="ml-auto">
-                  {/* <LinkContainer to="/allAlbums"> */}
-                  {/* <Nav.Link href="/albums">All Albums</Nav.Link> */}
-                  {/* </LinkContainer> */}
+                  <Nav.Link href="/albums">All Albums</Nav.Link>
+
                   {/* <Nav.Link href="#pricing">Genre</Nav.Link> */}
                   <NavDropdown title="Account" id="collasible-nav-dropdown">
                     <NavDropdown.Item onClick={logout}>
@@ -104,7 +103,7 @@ class Navbars extends Component {
             variant="dark"
           >
             <Container>
-            <Navbar.Brand style={{ width: "50vw" }} href="/home">
+              <Navbar.Brand style={{ width: "50vw" }} href="/home">
                 <img
                   alt=""
                   src="/test-art/vinyal_logo-removebg-preview.png"
@@ -117,9 +116,8 @@ class Navbars extends Component {
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
-                  {/* <LinkContainer to="/allAlbums"> */}
-                  {/* <Nav.Link href="/albums">All Albums</Nav.Link> */}
-                  {/* </LinkContainer> */}
+                  <Nav.Link href="/albums">All Albums</Nav.Link>
+
                   {/* <Nav.Link href="#pricing">Genre</Nav.Link> */}
                   <NavDropdown title="Account" id="collasible-nav-dropdown">
                     <NavDropdown.Item href="/login">Log In</NavDropdown.Item>

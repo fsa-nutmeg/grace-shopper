@@ -137,7 +137,7 @@ img {
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding: 20px;
-  background-image: linear-gradient(to bottom, #fff, #565551);
+
   /* 
   background-color: #343a40; */
 }
@@ -295,7 +295,7 @@ select {
 /* Style the submit button */
 input[type="submit"] {
   width: 100%;
-  background-color: #17a2b8;
+  background-color: #343a40;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -306,7 +306,7 @@ input[type="submit"] {
 
 /* Add a background color to the submit button on mouse-over */
 input[type="submit"]:hover {
-  background-color: #0f5f69;
+  background-color: #343a41;
 }
 
 .add-album {
@@ -314,4 +314,8 @@ input[type="submit"]:hover {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   justify-content: center;
   display: flex;
+}
+
+.home {
+  background-image: linear-gradient(to bottom, #fff, #343a40);
 }

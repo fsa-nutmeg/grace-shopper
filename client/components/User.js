@@ -18,18 +18,13 @@ export class SingleUser extends React.Component {
     return (
       <div>
         {this.props.user ? (
-          <div className="specificAlbum-container" key={this.props.user.id}>
-            <Card className="singleAlbum-card">
+          <div key={this.props.user.id}>
+            <Card className="login-card">
               <Card.Img
-                width="96px"
-                height="96px"
-                margin="0 auto 10px"
-                display="block"
-                border-radius="50%"
-                variant="top"
+                className="login-profile-img-card"
                 src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
               />
-              <Card.Body>
+              <Card.Body className="new-Album-form">
                 <Card.Title>{this.props.user.email}</Card.Title>
                 <Card.Text className="price">{`${this.props.user.address}`}</Card.Text>
                 <Card.Text className="album-title">{`${

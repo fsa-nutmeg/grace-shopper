@@ -1,4 +1,3 @@
-
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -11,7 +10,6 @@ import {
 } from "mdb-react-ui-kit";
 
 import { fetchAlbums } from "../store/allAlbums";
-import Footer from "./Footer";
 
 export class AllAlbums extends React.Component {
   constructor(props) {
@@ -34,12 +32,19 @@ export class AllAlbums extends React.Component {
   }
   render() {
     const albums = this.props.albums;
+    albums.sort((a, b) => (Math.random() > 0.5 ? 1 : -1));
     return (
       <div>
         <div className="allAlbums-title"></div>
+
         <div className="allAlbums">
+          <h1>
+            Top <br />
+            Albums
+          </h1>
+
           {albums.length ? (
-            albums.map((album) => (
+            albums.slice(0, 9).map((album) => (
               <div key={album.id}>
                 <form onSubmit={(ev) => ev.preventDefault()}></form>
                 <Link to={`/albums/${album.id}`} key={album.id}>
@@ -65,7 +70,6 @@ export class AllAlbums extends React.Component {
             <p>No albums...</p>
           )}
         </div>
-        <Footer />
       </div>
     );
   }
