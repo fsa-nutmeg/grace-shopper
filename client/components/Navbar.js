@@ -25,7 +25,6 @@ class Navbars extends Component {
   // fetchSingleUser
 
   render() {
-    console.log('RENDER', this.props);
     const { isLoggedIn } = this.props;
     function logout() {
       window.localStorage.removeItem('token');
