@@ -55,11 +55,48 @@ export const addItemToCart = (albumId, orderId, price) => {
   const token = window.localStorage.getItem('token');
   return async dispatch => {
     try {
-      const { data } = await axios.get('/api/orders/cart', {
+      const { data: cart } = await axios.get('/api/orders/cart', {
         headers: { authorization: token },
       });
 
-      const { items } = data;
+      const { items } = cart;
+
+      let orderItemId = 0,
+        orderItemQty = 0;
+
+      items.forEach(item => {
+        if (item.album.id === albumId) {
+          orderItemId = item.id;
+          orderItemQty = item.quantity + 1;
+        }
+      });
+
+      if (orderItemId !== 0) {
+        const { data: updated } = await axios.put('/api/orderAlbums', {
+          id: +orderItemId,
+          quantity: orderItemQty,
+        });
+
+        dispatch(changeQuantity(orderItemId, orderItemQty));
+      } else {
+        const { data: orderItem } = await axios.post('/api/orderAlbums', {
+          orderId: orderId,
+          albumId: albumId,
+          price: price,
+          quantity: 1,
+        });
+        const { data: album } = await axios.get(`/api/albums/${albumId}`);
+
+        delete album.quantity;
+        delete album.tracks;
+        delete album.staffPick;
+        delete album.description;
+        delete album.genre;
+        delete album.createdAt;
+        delete album.updatedAt;
+
+        dispatch(addToCart(album));
+      }
     } catch (err) {
       console.log(err);
     }

@@ -51,6 +51,31 @@ export const updateCartInfo = (orderId, updates) => {
   };
 };
 
+export const createCart = (userId, albumId, albumPrice) => {
+  return async dispatch => {
+    try {
+      // create new cart (order)
+      const { data: cart } = await axios.post('/api/orders', {
+        userId: userId,
+        completed: false,
+      });
+      // add item to cart
+      const { data: cartItem } = await axios.post('/api/orderAlbums', {
+        orderId: cart.id,
+        albumId: albumId,
+        price: albumPrice,
+        quantity: 1,
+      });
+
+      delete cart.items;
+      // update cart info
+      dispatch(setCartInfo(cart));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
 // INITIAL STATE
 const initialState = {};
 
