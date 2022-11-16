@@ -26,18 +26,15 @@ export class Cart extends React.Component {
   componentDidMount() {
     this.props.getCart();
     this.props.getCartInfo();
+    if (this.props.inventory.length) {
+      this.setState({ inventory: this.props.inventory });
+    } else {
+      this.setState({ inventory: this.props.guestInventory });
+    }
   }
 
   componentDidUpdate(prevProps) {
     const changes = {};
-
-    const prevGuestInventory = JSON.stringify(prevProps.guestInventory);
-    const currGuestInventory = JSON.stringify(this.props.guestInventory);
-
-    if (prevGuestInventory !== currGuestInventory) {
-      if (currGuestInventory.length)
-        changes.inventory = this.props.guestInventory;
-    }
 
     const prevInventory = JSON.stringify(prevProps.inventory);
     const currInventory = JSON.stringify(this.props.inventory);
