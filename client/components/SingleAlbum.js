@@ -9,6 +9,8 @@ import {
   deleteAlbum,
   updateAlbum,
 } from "../store/singleAlbum";
+import Button from 'react-bootstrap/Button';
+import Footer from "./Footer";
 
 export class SingleAlbum extends React.Component {
   constructor(props) {
@@ -49,7 +51,10 @@ if(!this.props.singleAlbum.title) {
         <Card.Text>
         {this.props.singleAlbum.description}
         </Card.Text>
-        <Card.Link href="#">add to cart</Card.Link>
+        <div className="d-grid gap-2">
+      <Button type="submit" variant="info">Add To Cart</Button>{' '}
+    </div>
+        {/* <Card.Link href="/cart">add to cart</Card.Link> */}
       </Card.Body>
       <ListGroup className="list-group-flush">
         {this.props.singleAlbum.tracks.map((track, i) => (
