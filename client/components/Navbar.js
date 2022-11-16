@@ -76,13 +76,12 @@ class Navbars extends Component {
                           <NavLink to="/allusers">All User Info</NavLink>
                         </NavDropdown.Item>
                         <NavDropdown.Item>
-                          <NavLink to="/admin/allalbums">Edit Existing</NavLink>
-                          Albums
+                          <NavLink to="/admin/allalbums">
+                            Edit Existing Albums
+                          </NavLink>
                         </NavDropdown.Item>
                         <NavDropdown.Item>
-                          <NavLink to="/loginadmin/addalbum">
-                            Add New Album
-                          </NavLink>
+                          <NavLink to="/admin/addalbum">Add New Album</NavLink>
                         </NavDropdown.Item>
                       </NavDropdown>
                     </div>
@@ -90,12 +89,6 @@ class Navbars extends Component {
                     <div></div>
                   )}
                 </Nav>
-                {/* <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              Dank memes
-            </Nav.Link>
-          </Nav> */}
               </Navbar.Collapse>
             </Container>
           </Navbar>

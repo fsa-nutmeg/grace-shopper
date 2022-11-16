@@ -3,7 +3,7 @@ body {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 label {
@@ -318,4 +318,8 @@ input[type="submit"]:hover {
 
 .home {
   background-image: linear-gradient(to bottom, #fff, #343a40);
+}
+
+.dropdown-item > a {
+  color: #343a40 !important;
 }
