@@ -15,19 +15,6 @@ const requireToken = async (req, res, next) => {
   }
 };
 
-const isAdmin = async (req, res, next) => {
-  try {
-    const token = req.headers.authorization;
-    const user = await User.findByToken(token);
-    req.user = user;
-    if (user.isAdmin) {
-      next();
-    }
-  } catch (error) {
-    next(error);
-  }
-};
-
 // GET /api/users (Get All Users)
 router.get("/", async (req, res, next) => {
   try {
