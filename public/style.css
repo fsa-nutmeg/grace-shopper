@@ -146,57 +146,6 @@ img {
   font-size: 40px;
 }
 
-<<<<<<< HEAD
-/* SINGLE ALBUM */
-
-.single-singleAlbum-container {
-  display: flex;
-}
-
-.single-singleAlbum-tracks {
-
-  flex-direction: column;
-  justify-content: center;
-}
-
-.single-singleAlbum-description {
-
-  justify-content: center;
-  padding: 50px;
-}
-
-.singleImage {
-  display:flex;
-  justify-content: center;
-  margin: 50px;
-}
-
-.card-container {
-  display:flex;
-  justify-content: center;
-  width:80vw !important;
-}
-
-.singleAlbum-card.card {
-  display: flex;
-  width:60% !important;
-}
-
-.card-body {
-  width: 100%;
-}
-
-.card-img-top {
-  width: 90px;
-}
-
-
-
-.singleAlbum-container {
-  display:flex;
-  justify-content: center;
-}
-=======
 /* Login */
 
 .login-card-container.card {
@@ -242,5 +191,4 @@ img {
 .imgCarousel {
   max-width: 50%;
   max-height: auto;
->>>>>>> main
 }
