@@ -10,7 +10,9 @@ import {
   fetchSingleAlbum,
   deleteAlbum,
   updateAlbum,
-} from '../store/singleAlbum';
+} from "../store/singleAlbum";
+import Button from 'react-bootstrap/Button';
+import Footer from "./Footer";
 
 export class SingleAlbum extends React.Component {
   constructor(props) {
@@ -64,28 +66,29 @@ export class SingleAlbum extends React.Component {
       return <div>loading album...</div>;
     }
     return (
-      <div className='singleAlbum-container'>
-        <div className='card-container'>
-          <Card className='singleAlbum-card'>
-            <Card.Img variant='top' src={this.props.singleAlbum.image} />
-            <Card.Body>
-              <Card.Title>{this.props.singleAlbum.title}</Card.Title>
-              <Card.Text>{this.props.singleAlbum.description}</Card.Text>
-              <Card.Link href='#'>add to cart</Card.Link>
-            </Card.Body>
-            <ListGroup className='list-group-flush'>
-              {this.props.singleAlbum.tracks.map((track, i) => (
-                <ListGroup.Item>
-                  {i + 1}. {track}
-                </ListGroup.Item>
-              ))}
-            </ListGroup>
-          </Card>
-        </div>
-      </div>
-    );
-  }
-}
+      <div className="singleAlbum-container">
+      <div className="card-container">
+        <Card className='singleAlbum-card'>
+      <Card.Img variant="top" src={this.props.singleAlbum.image} />
+      <Card.Body>
+        <Card.Title>{this.props.singleAlbum.title}</Card.Title>
+        <Card.Text>
+        {this.props.singleAlbum.description}
+        </Card.Text>
+        <div className="d-grid gap-2">
+      <Button type="submit" variant="info">Add To Cart</Button>{' '}
+    </div>
+        {/* <Card.Link href="/cart">add to cart</Card.Link> */}
+      </Card.Body>
+      <ListGroup className="list-group-flush">
+        {this.props.singleAlbum.tracks.map((track, i) => (
+        <ListGroup.Item>{i+1}. {track}</ListGroup.Item>))}
+      </ListGroup>
+    </Card>
+    </div>
+    </div>
+  )
+}}
 
 const mapState = state => {
   return {

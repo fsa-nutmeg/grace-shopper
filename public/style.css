@@ -146,7 +146,7 @@ img {
   font-size: 40px;
 }
 
-<<<<<<< HEAD
+
 /* SINGLE ALBUM */
 
 .single-singleAlbum-container {
@@ -196,7 +196,7 @@ img {
   display:flex;
   justify-content: center;
 }
-=======
+
 /* Login */
 
 .login-card-container.card {
@@ -242,5 +242,16 @@ img {
 .imgCarousel {
   max-width: 50%;
   max-height: auto;
->>>>>>> main
 }
+
+/* Footer */
+
+/* .container.footer {
+  display: flex;
+  align-items: center;
+}
+
+.text-white {
+  padding: 7px;
+  margin: 20px;
+} */
