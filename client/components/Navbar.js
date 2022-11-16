@@ -7,6 +7,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { LinkContainer } from "react-router-bootstrap";
 import { me } from "../store";
 import { fetchSingleUser } from "../store/singleUser";
+import { NavLink } from "react-router-dom";
 // import { User } from "../../server/db/";
 
 class Navbars extends Component {
@@ -24,7 +25,6 @@ class Navbars extends Component {
   // fetchSingleUser
 
   render() {
-    console.log(window.localStorage.token);
     const { isLoggedIn } = this.props;
     function logout() {
       window.localStorage.removeItem("token");
@@ -65,19 +65,24 @@ class Navbars extends Component {
                       User Info
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/cart">Cart</NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <NavLink to="/cart">Cart</NavLink>
+                    </NavDropdown.Item>
                   </NavDropdown>
                   {this.props.user.isAdmin ? (
                     <div>
                       <NavDropdown title="Admin Tools">
-                        <NavDropdown.Item href={`/admin/allusers`}>
-                          All User Info
+                        <NavDropdown.Item>
+                          <NavLink to="/allusers">All User Info</NavLink>
                         </NavDropdown.Item>
-                        <NavDropdown.Item href={`/admin/allalbums`}>
-                          Edit Existing Albums
+                        <NavDropdown.Item>
+                          <NavLink to="/admin/allalbums">Edit Existing</NavLink>
+                          Albums
                         </NavDropdown.Item>
-                        <NavDropdown.Item href={`/admin/addalbum`}>
-                          Add New Album
+                        <NavDropdown.Item>
+                          <NavLink to="/loginadmin/addalbum">
+                            Add New Album
+                          </NavLink>
                         </NavDropdown.Item>
                       </NavDropdown>
                     </div>
@@ -120,10 +125,16 @@ class Navbars extends Component {
 
                   {/* <Nav.Link href="#pricing">Genre</Nav.Link> */}
                   <NavDropdown title="Account" id="collasible-nav-dropdown">
-                    <NavDropdown.Item href="/login">Log In</NavDropdown.Item>
-                    <NavDropdown.Item href="/signup">Sign Up</NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <NavLink to="/login">Log In</NavLink>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <NavLink to="/signup">Sign Up</NavLink>
+                    </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/cart">Cart</NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <NavLink to="/cart">Cart</NavLink>
+                    </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
               </Navbar.Collapse>
