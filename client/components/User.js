@@ -4,51 +4,13 @@ import { connect } from "react-redux";
 import { fetchSingleUser } from "../store/singleUser";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Card from "react-bootstrap/Card";
 
 export class SingleUser extends React.Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     auth: {},
-  //     notes: [],
-  //   };
-  //   this.signIn = this.signIn.bind(this);
-  //   this.logout = this.logout.bind(this);
-  // }
-  // logout() {
-  //   window.localStorage.removeItem("token");
-  //   this.setState({ auth: {} });
-  // }
-  // async attemptTokenLogin() {
-  //   const token = window.localStorage.getItem("token");
-  //   if (token) {
-  //     const { data: auth } = await axios.get("/api/auth", {
-  //       headers: {
-  //         authorization: token,
-  //       },
-  //     });
-  //     //use the user id that's returned in the token to make a request for user's notes
-  //     const { id } = auth;
-  //     const { data: notes } = await axios.get(`/api/users/${id}/notes`, {
-  //       headers: {
-  //         authorization: token,
-  //       },
-  //     });
-  //     this.setState({ auth, notes });
-  //   }
-  // }
   componentDidMount() {
-    // this.attemptTokenLogin();
     const userId = this.props.match.params.id;
     this.props.getSingleUser(userId);
   }
-
-  // async signIn(credentials) {
-  //   const response = await axios.post("/api/auth", credentials);
-  //   const { token } = response.data;
-  //   window.localStorage.setItem("token", token);
-  //   this.attemptTokenLogin();
-  // }
 
   render() {
     console.log("props", this.props);
@@ -56,16 +18,25 @@ export class SingleUser extends React.Component {
     return (
       <div>
         {this.props.user ? (
-          <div>
-            <div>
-              {this.props.user.isAdmin ? <div>ADMIN</div> : <div></div>}
-            </div>
-            <div id="single-user-detail">
-              <div>
-                <p>Email:{this.props.user.email}</p>
-                <p>Address:{this.props.user.address}</p>
-              </div>
-            </div>
+          <div className="specificAlbum-container" key={this.props.user.id}>
+            <Card className="singleAlbum-card">
+              <Card.Img
+                width="96px"
+                height="96px"
+                margin="0 auto 10px"
+                display="block"
+                border-radius="50%"
+                variant="top"
+                src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+              />
+              <Card.Body>
+                <Card.Title>{this.props.user.email}</Card.Title>
+                <Card.Text className="price">{`${this.props.user.address}`}</Card.Text>
+                <Card.Text className="album-title">{`${
+                  this.props.user.isAdmin ? "ADMINISTRATOR" : "USER"
+                }`}</Card.Text>
+              </Card.Body>
+            </Card>
           </div>
         ) : (
           <div>404 No User Here</div>

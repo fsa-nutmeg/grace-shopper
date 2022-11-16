@@ -149,6 +149,52 @@ img {
   font-size: 40px;
 }
 
+/* SINGLE ALBUM */
+
+.single-singleAlbum-container {
+  display: flex;
+}
+
+.single-singleAlbum-tracks {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.single-singleAlbum-description {
+  justify-content: center;
+  padding: 50px;
+}
+
+.singleImage {
+  display: flex;
+  justify-content: center;
+  margin: 50px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  width: 80vw !important;
+}
+
+.singleAlbum-card.card {
+  display: flex;
+  width: 60% !important;
+}
+
+.card-body {
+  width: 100%;
+}
+
+.card-img-top {
+  width: 90px;
+}
+
+.singleAlbum-container {
+  display: flex;
+  justify-content: center;
+}
+
 /* Login */
 
 .login-card-container.card {
@@ -221,4 +267,51 @@ img {
 .navbar-brand > * {
   display: inline;
   align-items: center;
+}
+/* Footer */
+
+/* .container.footer {
+  display: flex;
+  align-items: center;
+}
+
+.text-white {
+  padding: 7px;
+  margin: 20px;
+} */
+
+/* ADMIN PAGES */
+input[type="text"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+  width: 100%;
+  background-color: #17a2b8;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Add a background color to the submit button on mouse-over */
+input[type="submit"]:hover {
+  background-color: #0f5f69;
+}
+
+.add-album {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  justify-content: center;
+  display: flex;
 }

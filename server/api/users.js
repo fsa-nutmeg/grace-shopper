@@ -1,7 +1,7 @@
-const router = require('express').Router();
+const router = require("express").Router();
 const {
   models: { User, Order, OrderAlbum, Album },
-} = require('../db');
+} = require("../db");
 module.exports = router;
 
 const requireToken = async (req, res, next) => {
@@ -16,10 +16,10 @@ const requireToken = async (req, res, next) => {
 };
 
 // GET /api/users (Get All Users)
-router.get('/', requireToken, async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const users = await User.findAll({
-      attributes: ['id', 'email', 'address', 'isAdmin'],
+      attributes: ["id", "email", "address", "isAdmin"],
     });
     res.send(users);
   } catch (err) {
@@ -28,7 +28,7 @@ router.get('/', requireToken, async (req, res, next) => {
 });
 
 // POST /api/users (Create User)
-router.post('/', requireToken, async (req, res, next) => {
+router.post("/", requireToken, async (req, res, next) => {
   try {
     // requires email & password in req.body
     const user = req.body;
@@ -40,7 +40,7 @@ router.post('/', requireToken, async (req, res, next) => {
 });
 
 // PUT /api/users (Edit User)
-router.put('/', requireToken, async (req, res, next) => {
+router.put("/", requireToken, async (req, res, next) => {
   try {
     // requires id (of user) in req.body
     const updates = req.body;
@@ -65,7 +65,7 @@ router.put('/', requireToken, async (req, res, next) => {
 });
 
 // DELETE /api/users/:id (Delete User)
-router.delete('/:id', requireToken, async (req, res, next) => {
+router.delete("/:id", requireToken, async (req, res, next) => {
   try {
     const { id } = req.params;
     const user = await User.findByPk(id);
@@ -84,7 +84,7 @@ router.delete('/:id', requireToken, async (req, res, next) => {
 });
 
 // GET /api/users/:userId (Get One User)
-router.get('/:id', requireToken, async (req, res, next) => {
+router.get("/:id", requireToken, async (req, res, next) => {
   try {
     const user = await User.findByToken(req.headers.authorization);
     res.send(user);
@@ -93,3 +93,32 @@ router.get('/:id', requireToken, async (req, res, next) => {
   }
 });
 
+// GET /api/users/:userId/cart (Get Cart)
+router.get("/:id/cart", requireToken, async (req, res, next) => {
+  try {
+    const [cart] = await Order.findAll({
+      attributes: ["id", "billingInfo", "shippingInfo", "completed"],
+      where: {
+        userId: req.params.id,
+        completed: false,
+      },
+    });
+
+    if (!cart) res.status(404).send({});
+
+    const items = await OrderAlbum.findAll({
+      attributes: ["id", "price", "quantity"],
+      where: {
+        orderId: cart.id,
+      },
+      include: {
+        model: Album,
+        attributes: ["id", "price", "title", "artistName", "image"],
+      },
+    });
+
+    res.json({ ...cart.dataValues, items });
+  } catch (err) {
+    next(err);
+  }
+});

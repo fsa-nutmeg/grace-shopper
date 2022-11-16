@@ -11,6 +11,7 @@ import {
 } from "mdb-react-ui-kit";
 
 import { fetchAlbums } from "../store/allAlbums";
+import Footer from "./Footer";
 
 export class AllAlbums extends React.Component {
   constructor(props) {
@@ -64,6 +65,7 @@ export class AllAlbums extends React.Component {
             <p>No albums...</p>
           )}
         </div>
+        <Footer/>
       </div>
     );
   }

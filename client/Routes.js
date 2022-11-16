@@ -13,12 +13,14 @@ import AllUsers from "./components/Admin/AllUsers";
 import AdminAllAlbums from "./components/Admin/AdminAllAlbums";
 import EditAlbum from "./components/Admin/EditAlbum";
 import AddNewAlbum from "./components/Admin/AddNewAlbum";
+import { fetchSingleUser } from "./store/singleUser";
 /**
  * COMPONENT
  */
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
+    this.props.getSingleUser(this.props.id);
   }
 
   render() {
@@ -33,11 +35,26 @@ class Routes extends Component {
             <Route exact path="/albums/:albumId" component={SingleAlbum} />
             <Route exact path="/users/:id" component={SingleUser} />
             <Route exact path="/cart/" component={Cart} />
-            <Route exact path="/admin/allusers/" component={AllUsers} />
-            <Route exact path="/admin/allalbums/" component={AdminAllAlbums} />
-            <Route exact path="/admin/addalbum" component={AddNewAlbum} />
-            <Route exact path="/admin/albums/:albumId" component={EditAlbum} />
-
+            <div>
+              {this.props.user.isAdmin ? (
+                <div>
+                  <Route exact path="/admin/allusers/" component={AllUsers} />
+                  <Route
+                    exact
+                    path="/admin/allalbums/"
+                    component={AdminAllAlbums}
+                  />
+                  <Route exact path="/admin/addalbum" component={AddNewAlbum} />
+                  <Route
+                    exact
+                    path="/admin/albums/:albumId"
+                    component={EditAlbum}
+                  />
+                </div>
+              ) : (
+                <div></div>
+              )}
+            </div>
             {/* <Redirect to="/home" /> */}
           </Switch>
         ) : (
@@ -65,6 +82,8 @@ const mapState = (state) => {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
+    id: state.auth.id,
+    user: state.user,
   };
 };
 
@@ -73,6 +92,7 @@ const mapDispatch = (dispatch) => {
     loadInitialData() {
       dispatch(me());
     },
+    getSingleUser: (id) => dispatch(fetchSingleUser(id)),
   };
 };
 

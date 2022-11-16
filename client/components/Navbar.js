@@ -16,13 +16,15 @@ class Navbars extends Component {
   }
   componentDidMount(prev) {
     this.props.loadInitialData();
-    // this.fetchSingleUser(User.findByToken(window.localStorage.token));
+    this.props.fetchSingleUser();
+
     this.setState({ userId: this.props.user.id });
   }
   componentDidUpdate(prev) {}
   // fetchSingleUser
 
   render() {
+    console.log(window.localStorage.token);
     const { isLoggedIn } = this.props;
     function logout() {
       window.localStorage.removeItem("token");
@@ -39,7 +41,7 @@ class Navbars extends Component {
             variant="dark"
           >
             <Container>
-              <Navbar.Brand style={{ width: "50vw" }} href="#home">
+              <Navbar.Brand style={{ width: "50vw" }} href="/home">
                 <img
                   alt=""
                   src="/test-art/vinyal_logo-removebg-preview.png"
@@ -66,17 +68,23 @@ class Navbars extends Component {
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/cart">Cart</NavDropdown.Item>
                   </NavDropdown>
-                  <NavDropdown title="Admin Tools">
-                    <NavDropdown.Item href={`/admin/allusers`}>
-                      All User Info
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href={`/admin/allalbums`}>
-                      Edit Existing Albums
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href={`/admin/addalbum`}>
-                      Add New Album
-                    </NavDropdown.Item>
-                  </NavDropdown>
+                  {this.props.user.isAdmin ? (
+                    <div>
+                      <NavDropdown title="Admin Tools">
+                        <NavDropdown.Item href={`/admin/allusers`}>
+                          All User Info
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href={`/admin/allalbums`}>
+                          Edit Existing Albums
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href={`/admin/addalbum`}>
+                          Add New Album
+                        </NavDropdown.Item>
+                      </NavDropdown>
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
                 </Nav>
                 {/* <Nav>
             <Nav.Link href="#deets">More deets</Nav.Link>
@@ -96,19 +104,15 @@ class Navbars extends Component {
             variant="dark"
           >
             <Container>
-              <Navbar.Brand
-                className="justify-content-end"
-                style={{ width: "50vw" }}
-                href="#home"
-              >
+            <Navbar.Brand style={{ width: "50vw" }} href="/home">
                 <img
                   alt=""
                   src="/test-art/vinyal_logo-removebg-preview.png"
-                  width="80"
-                  height="80"
-                  className="d-inline-block align-top rounded-circle"
-                />{" "}
-                High Rise Records
+                  width="150"
+                  height="150"
+                  className="d-inline-block  rounded-circle"
+                />
+                <h1>{"High Rise Records"}</h1>
               </Navbar.Brand>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
@@ -138,6 +142,7 @@ const mapState = (state) => {
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
     user: state.user,
+    id: state.auth.id,
   };
 };
 
