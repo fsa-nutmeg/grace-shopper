@@ -1,13 +1,13 @@
-import React, { Component, Fragment } from "react";
-import Container from "react-bootstrap/Container";
-import { connect } from "react-redux";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import { LinkContainer } from "react-router-bootstrap";
-import { me } from "../store";
-import { fetchSingleUser } from "../store/singleUser";
-import { NavLink } from "react-router-dom";
+import React, { Component, Fragment } from 'react';
+import Container from 'react-bootstrap/Container';
+import { connect } from 'react-redux';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import { LinkContainer } from 'react-router-bootstrap';
+import { me } from '../store';
+import { fetchSingleUser } from '../store/singleUser';
+import { NavLink } from 'react-router-dom';
 // import { User } from "../../server/db/";
 
 class Navbars extends Component {
@@ -27,61 +27,66 @@ class Navbars extends Component {
   render() {
     const { isLoggedIn } = this.props;
     function logout() {
-      window.localStorage.removeItem("token");
-      window.location.replace("/home");
+      window.localStorage.removeItem('token');
+      window.location.replace('/home');
     }
     return (
       <div>
         {isLoggedIn ? (
           <Navbar
             collapseOnSelect
-            expand="lg"
-            text="light"
-            bg="dark"
-            variant="dark"
+            expand='lg'
+            text='light'
+            bg='dark'
+            variant='dark'
           >
             <Container>
-              <Navbar.Brand style={{ width: "50vw" }} href="/home">
+              <Navbar.Brand style={{ width: '50vw' }}>
                 <img
-                  alt=""
-                  src="/test-art/vinyal_logo-removebg-preview.png"
-                  width="150"
-                  height="150"
-                  className="d-inline-block  rounded-circle"
+                  alt=''
+                  src='/test-art/vinyal_logo-removebg-preview.png'
+                  width='150'
+                  height='150'
+                  className='d-inline-block  rounded-circle'
                 />
-                <h1>{"High Rise Records"}</h1>
+                <NavLink to='/home'>
+                  <h1>{'High Rise Records'}</h1>
+                </NavLink>
               </Navbar.Brand>
-              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="ml-auto">
-                  <Nav.Link href="/albums">All Albums</Nav.Link>
+              <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+              <Navbar.Collapse id='responsive-navbar-nav'>
+                <Nav className='ml-auto'>
+                  <NavLink to='/albums'>All Albums</NavLink>
 
                   {/* <Nav.Link href="#pricing">Genre</Nav.Link> */}
-                  <NavDropdown title="Account" id="collasible-nav-dropdown">
+                  <NavDropdown title='Account' id='collasible-nav-dropdown'>
                     <NavDropdown.Item onClick={logout}>
                       Log Out
                     </NavDropdown.Item>
-                    <NavDropdown.Item href={`/users/${this.props.user.id}`}>
+                    <NavDropdown.Item>
+                      <NavLink to={`/users/${this.props.user.id}`}>
+                        User Info
+                      </NavLink>
                       User Info
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item>
-                      <NavLink to="/cart">Cart</NavLink>
+                      <NavLink to='/cart'>Cart</NavLink>
                     </NavDropdown.Item>
                   </NavDropdown>
                   {this.props.user.isAdmin ? (
                     <div>
-                      <NavDropdown title="Admin Tools">
+                      <NavDropdown title='Admin Tools'>
                         <NavDropdown.Item>
-                          <NavLink to="/allusers">All User Info</NavLink>
+                          <NavLink to='/allusers'>All User Info</NavLink>
                         </NavDropdown.Item>
                         <NavDropdown.Item>
-                          <NavLink to="/admin/allalbums">
+                          <NavLink to='/admin/allalbums'>
                             Edit Existing Albums
                           </NavLink>
                         </NavDropdown.Item>
                         <NavDropdown.Item>
-                          <NavLink to="/admin/addalbum">Add New Album</NavLink>
+                          <NavLink to='/admin/addalbum'>Add New Album</NavLink>
                         </NavDropdown.Item>
                       </NavDropdown>
                     </div>
@@ -95,38 +100,39 @@ class Navbars extends Component {
         ) : (
           <Navbar
             collapseOnSelect
-            expand="lg"
-            text="light"
-            bg="dark"
-            variant="dark"
+            expand='lg'
+            text='light'
+            bg='dark'
+            variant='dark'
           >
             <Container>
-              <Navbar.Brand style={{ width: "50vw" }} href="/home">
+              <Navbar.Brand style={{ width: '50vw' }}>
                 <img
-                  alt=""
-                  src="/test-art/vinyal_logo-removebg-preview.png"
-                  width="150"
-                  height="150"
-                  className="d-inline-block  rounded-circle"
+                  alt=''
+                  src='/test-art/vinyal_logo-removebg-preview.png'
+                  width='150'
+                  height='150'
+                  className='d-inline-block  rounded-circle'
                 />
-                <h1>{"High Rise Records"}</h1>
+                <NavLink to='/home'>
+                  <h1>{'High Rise Records'}</h1>
+                </NavLink>
               </Navbar.Brand>
-              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="me-auto">
-                  <Nav.Link href="/albums">All Albums</Nav.Link>
-
+              <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+              <Navbar.Collapse id='responsive-navbar-nav'>
+                <Nav className='me-auto'>
+                  <NavLink to='/albums'>All Albums</NavLink>
                   {/* <Nav.Link href="#pricing">Genre</Nav.Link> */}
-                  <NavDropdown title="Account" id="collasible-nav-dropdown">
+                  <NavDropdown title='Account' id='collasible-nav-dropdown'>
                     <NavDropdown.Item>
-                      <NavLink to="/login">Log In</NavLink>
+                      <NavLink to='/login'>Log In</NavLink>
                     </NavDropdown.Item>
                     <NavDropdown.Item>
-                      <NavLink to="/signup">Sign Up</NavLink>
+                      <NavLink to='/signup'>Sign Up</NavLink>
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item>
-                      <NavLink to="/cart">Cart</NavLink>
+                      <NavLink to='/cart'>Cart</NavLink>
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
@@ -138,7 +144,7 @@ class Navbars extends Component {
     );
   }
 }
-const mapState = (state) => {
+const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
@@ -154,7 +160,7 @@ const mapState = (state) => {
 //   };
 // };
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me());

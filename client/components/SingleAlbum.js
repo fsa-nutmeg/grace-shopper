@@ -1,7 +1,7 @@
 //[ ] build this component
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { fetchCartInfo, createCart } from '../store/cartInfo';
@@ -20,6 +20,7 @@ export class SingleAlbum extends React.Component {
     super(props);
     this.state = {
       singleAlbum: {},
+      addedToCart: false,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -67,13 +68,17 @@ export class SingleAlbum extends React.Component {
     } else {
       this.props.addToGuestCart(albumId);
     }
+    this.setState({ addedToCart: true });
   }
 
   render() {
     console.log('guest cart inventory.... ', this.props.guestCartItems);
+    const { addedToCart } = this.state;
+
     if (!this.props.singleAlbum.title) {
       return <div>loading album...</div>;
     }
+
     return (
       <div className='singleAlbum-container'>
         <div className='card-container'>
@@ -83,8 +88,12 @@ export class SingleAlbum extends React.Component {
               <Card.Title>{this.props.singleAlbum.title}</Card.Title>
               <Card.Text>{this.props.singleAlbum.description}</Card.Text>
               <div className='d-grid gap-2'>
-                <Button type='submit' variant='info' onClick={this.handleClick}>
-                  Add To Cart
+                <Button
+                  type='submit'
+                  variant={addedToCart ? 'success' : 'info'}
+                  onClick={this.handleClick}
+                >
+                  {addedToCart ? 'Item Added' : 'Add To Cart'}
                 </Button>{' '}
               </div>
               {/* <Card.Link href="/cart">add to cart</Card.Link> */}

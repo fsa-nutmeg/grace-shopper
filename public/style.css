@@ -103,7 +103,7 @@ img {
   flex-direction: column;
   align-items: center;
   padding: 6px 14px;
-  font-family: -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
   border-radius: 6px;
   border: none;
 
@@ -143,7 +143,7 @@ img {
 }
 
 .allAlbums-title {
-  font-family: "tower";
+  font-family: 'tower';
   margin: 30px;
   margin-bottom: 10px;
   font-size: 40px;
@@ -247,7 +247,7 @@ img {
 }
 
 .carousel {
-  display: "flex";
+  display: 'flex';
   /* margin: 100%; */
   align-items: center;
   max-width: 100%;
@@ -260,12 +260,11 @@ img {
 }
 
 .navbar-brand {
-  display: inline-block;
+  display: flex;
   flex-direction: row;
 }
 
 .navbar-brand > * {
-  display: inline;
   align-items: center;
 }
 /* Footer */
@@ -281,7 +280,7 @@ img {
 } */
 
 /* ADMIN PAGES */
-input[type="text"],
+input[type='text'],
 select {
   width: 100%;
   padding: 12px 20px;
@@ -293,7 +292,7 @@ select {
 }
 
 /* Style the submit button */
-input[type="submit"] {
+input[type='submit'] {
   width: 100%;
   background-color: #343a40;
   color: white;
@@ -305,13 +304,13 @@ input[type="submit"] {
 }
 
 /* Add a background color to the submit button on mouse-over */
-input[type="submit"]:hover {
+input[type='submit']:hover {
   background-color: #343a41;
 }
 
 .add-album {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   justify-content: center;
   display: flex;
 }
@@ -322,4 +321,19 @@ input[type="submit"]:hover {
 
 .dropdown-item > a {
   color: #343a40 !important;
+}
+
+a > h1 {
+  color: rgba(255, 255, 255, 0.5);
+}
+.navbar-nav > a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.5) !important;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.light-text {
+  color: white;
 }
