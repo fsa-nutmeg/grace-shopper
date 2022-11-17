@@ -41,7 +41,7 @@ class Navbars extends Component {
             variant="dark"
           >
             <Container>
-              <Navbar.Brand style={{ width: "50vw" }} href="/home">
+              <Navbar.Brand style={{ width: "50vw" }}>
                 <img
                   alt=""
                   src="/test-art/vinyal_logo-removebg-preview.png"
@@ -49,20 +49,24 @@ class Navbars extends Component {
                   height="150"
                   className="d-inline-block  rounded-circle"
                 />
-                <h1>{"High Rise Records"}</h1>
+                <NavLink to="/home">
+                  <h1>{"High Rise Records"}</h1>
+                </NavLink>
               </Navbar.Brand>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="ml-auto">
-                  <Nav.Link href="/albums">All Albums</Nav.Link>
+                  <NavLink to="/albums">All Albums</NavLink>
 
                   {/* <Nav.Link href="#pricing">Genre</Nav.Link> */}
                   <NavDropdown title="Account" id="collasible-nav-dropdown">
                     <NavDropdown.Item onClick={logout}>
                       Log Out
                     </NavDropdown.Item>
-                    <NavDropdown.Item href={`/users/${this.props.user.id}`}>
-                      User Info
+                    <NavDropdown.Item>
+                      <NavLink to={`/users/${this.props.user.id}`}>
+                        User Info
+                      </NavLink>
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item>
@@ -73,7 +77,7 @@ class Navbars extends Component {
                     <div>
                       <NavDropdown title="Admin Tools">
                         <NavDropdown.Item>
-                          <NavLink to="/allusers">All User Info</NavLink>
+                          <NavLink to="admin/allusers">All User Info</NavLink>
                         </NavDropdown.Item>
                         <NavDropdown.Item>
                           <NavLink to="/admin/allalbums">
@@ -101,7 +105,7 @@ class Navbars extends Component {
             variant="dark"
           >
             <Container>
-              <Navbar.Brand style={{ width: "50vw" }} href="/home">
+              <Navbar.Brand style={{ width: "50vw" }}>
                 <img
                   alt=""
                   src="/test-art/vinyal_logo-removebg-preview.png"
@@ -109,13 +113,14 @@ class Navbars extends Component {
                   height="150"
                   className="d-inline-block  rounded-circle"
                 />
-                <h1>{"High Rise Records"}</h1>
+                <NavLink to="/home">
+                  <h1>{"High Rise Records"}</h1>
+                </NavLink>
               </Navbar.Brand>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
-                  <Nav.Link href="/albums">All Albums</Nav.Link>
-
+                  <NavLink to="/albums">All Albums</NavLink>
                   {/* <Nav.Link href="#pricing">Genre</Nav.Link> */}
                   <NavDropdown title="Account" id="collasible-nav-dropdown">
                     <NavDropdown.Item>

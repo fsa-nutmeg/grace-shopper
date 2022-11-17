@@ -47,7 +47,7 @@ class PopAlbums extends React.Component {
         <div className="allAlbums-title"></div>
 
         <div className="allAlbums">
-          <h1>
+          <h1 className='light-text'>
             Pop <br /> Albums
           </h1>
 

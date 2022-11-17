@@ -260,12 +260,11 @@ img {
 }
 
 .navbar-brand {
-  display: inline-block;
+  display: flex;
   flex-direction: row;
 }
 
 .navbar-brand > * {
-  display: inline;
   align-items: center;
 }
 /* Footer */
@@ -282,6 +281,17 @@ img {
 
 /* ADMIN PAGES */
 input[type="text"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="password"],
 select {
   width: 100%;
   padding: 12px 20px;
@@ -322,4 +332,19 @@ input[type="submit"]:hover {
 
 .dropdown-item > a {
   color: #343a40 !important;
+}
+
+a > h1 {
+  color: rgba(255, 255, 255, 0.5);
+}
+.navbar-nav > a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.5) !important;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.light-text {
+  color: white;
 }
