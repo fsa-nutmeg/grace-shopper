@@ -8,7 +8,10 @@ import Checkout from "./Checkout";
 import CartAlbumCard from "./CartAlbumCard";
 import CompletedOrder from "./CompletedOrder";
 import Button from "react-bootstrap/Button";
-import { addAlbumToGuestCart } from "../store/guestCartInventory";
+import {
+  addAlbumToGuestCart,
+  changeQuantity,
+} from "../store/guestCartInventory";
 
 export class Cart extends React.Component {
   constructor(props) {
@@ -34,6 +37,8 @@ export class Cart extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    const { auth } = this.props;
+
     const changes = {};
 
     const prevInventory = JSON.stringify(prevProps.inventory);
@@ -41,6 +46,13 @@ export class Cart extends React.Component {
 
     if (prevInventory !== currInventory) {
       changes.inventory = this.props.inventory;
+    }
+
+    const prevGuestInventory = JSON.stringify(prevProps.guestInventory);
+    const currGuestInventory = JSON.stringify(this.props.guestInventory);
+
+    if (!auth.id && prevGuestInventory !== currGuestInventory) {
+      changes.inventory = this.props.guestInventory;
     }
 
     if (prevProps.info.id !== this.props.info.id) {
@@ -74,13 +86,17 @@ export class Cart extends React.Component {
   }
 
   handleQtyChange(id, qty) {
-    const { changeQty } = this.props;
-    changeQty(id, qty);
+    const { changeQty, auth, guestChangeQty } = this.props;
+    if (auth.id) {
+      changeQty(id, qty);
+    } else {
+      guestChangeQty(id, qty);
+    }
   }
 
   render() {
     const { inventory, checkout, completed, orderId } = this.state;
-    const { updateInfo, getOrder } = this.props;
+    const { updateInfo, getOrder, auth } = this.props;
 
     if (!inventory.length)
       return <div className="cart-container">Nothing In Cart</div>;
@@ -146,6 +162,7 @@ const mapDispatch = (dispatch) => {
     getCart: () => dispatch(fetchCart()),
     getCartInfo: () => dispatch(fetchCartInfo()),
     changeQty: (id, qty) => dispatch(changeItemQty(id, qty)),
+    guestChangeQty: (id, qty) => dispatch(changeQuantity(id, qty)),
     updateInfo: (id, updates) => dispatch(updateCartInfo(id, updates)),
     getOrder: (id) => dispatch(fetchSingleOrder(id)),
     addToGuestCart: (albumId) => dispatch(addAlbumToGuestCart(albumId)),
