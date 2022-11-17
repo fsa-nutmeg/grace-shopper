@@ -2,12 +2,23 @@ import axios from 'axios';
 
 // ACTIONS
 const ADD_TO_GUEST_CART = 'ADD_TO_GUEST_CART';
+const CHANGE_QUANTITY = 'GUEST_CHANGE_QUANTITY';
 
 // ACTION CREATORS
 const addToGuestCart = album => {
   return {
     type: ADD_TO_GUEST_CART,
     album,
+  };
+};
+
+export const changeQuantity = (albumId, qty) => {
+  console.log('album id...', albumId);
+  console.log('quantity.... ', qty);
+  return {
+    type: CHANGE_QUANTITY,
+    albumId,
+    qty,
   };
 };
 
@@ -53,6 +64,12 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_GUEST_CART:
       return addAlbumToState(action.album, state);
+    case CHANGE_QUANTITY:
+      return state.map(item =>
+        item.album.id == action.albumId
+          ? { ...item, quantity: action.qty }
+          : item
+      );
     default:
       return state;
   }
