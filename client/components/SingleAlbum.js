@@ -89,12 +89,16 @@ export class SingleAlbum extends React.Component {
               </div>
               {/* <Card.Link href="/cart">add to cart</Card.Link> */}
             </Card.Body>
+
             <ListGroup className='list-group-flush'>
-              {this.props.singleAlbum.tracks.map((track, i) => (
+              {this.props.singleAlbum.tracks ? (
+              this.props.singleAlbum.tracks.map((track, i) => (
                 <ListGroup.Item>
                   {i + 1}. {track}
                 </ListGroup.Item>
-              ))}
+              ))) : (
+                <div></div>
+              )}
             </ListGroup>
           </Card>
         </div>
