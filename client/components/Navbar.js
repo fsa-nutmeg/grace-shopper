@@ -77,7 +77,7 @@ class Navbars extends Component {
                     <div>
                       <NavDropdown title="Admin Tools">
                         <NavDropdown.Item>
-                          <NavLink to="admin/allusers">All User Info</NavLink>
+                          <NavLink to="/admin/allusers">All User Info</NavLink>
                         </NavDropdown.Item>
                         <NavDropdown.Item>
                           <NavLink to="/admin/allalbums">
