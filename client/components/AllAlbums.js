@@ -1,4 +1,3 @@
-
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -35,7 +34,7 @@ export class AllAlbums extends React.Component {
   render() {
     const albums = this.props.albums;
     return (
-      <div>
+      <div className="home">
         <div className="allAlbums-title"></div>
         <div className="allAlbums">
           {albums.length ? (

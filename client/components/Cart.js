@@ -90,37 +90,39 @@ export class Cart extends React.Component {
       .toFixed(2);
 
     return (
-      <div className="cart-container">
-        <h2>{`Subtotal $${total}`}</h2>
-        {completed ? (
-          <CompletedOrder orderId={orderId} />
-        ) : checkout ? (
-          <Checkout
-            orderId={orderId}
-            toggleCheckout={this.toggleCheckout}
-            updateInfo={updateInfo}
-            getOrder={getOrder}
-          />
-        ) : (
-          <Button onClick={this.toggleCheckout}>Checkout</Button>
-        )}
-        <div className="albums-view">
-          {inventory.map((item) => {
-            const { id, price, quantity, album } = item;
-            const { image, title, artistName } = album;
-            return (
-              <CartAlbumCard
-                key={id}
-                id={id}
-                price={price}
-                qty={quantity}
-                image={image}
-                title={title}
-                artistName={artistName}
-                handleQtyChange={this.handleQtyChange}
-              />
-            );
-          })}
+      <div className="home">
+        <div className="cart-container">
+          <h2>{`Subtotal $${total}`}</h2>
+          {completed ? (
+            <CompletedOrder orderId={orderId} />
+          ) : checkout ? (
+            <Checkout
+              orderId={orderId}
+              toggleCheckout={this.toggleCheckout}
+              updateInfo={updateInfo}
+              getOrder={getOrder}
+            />
+          ) : (
+            <Button onClick={this.toggleCheckout}>Checkout</Button>
+          )}
+          <div className="albums-view">
+            {inventory.map((item) => {
+              const { id, price, quantity, album } = item;
+              const { image, title, artistName } = album;
+              return (
+                <CartAlbumCard
+                  key={id}
+                  id={id}
+                  price={price}
+                  qty={quantity}
+                  image={image}
+                  title={title}
+                  artistName={artistName}
+                  handleQtyChange={this.handleQtyChange}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     );
