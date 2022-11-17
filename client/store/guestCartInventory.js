@@ -13,8 +13,6 @@ const addToGuestCart = album => {
 };
 
 export const changeQuantity = (albumId, qty) => {
-  console.log('album id...', albumId);
-  console.log('quantity.... ', qty);
   return {
     type: CHANGE_QUANTITY,
     albumId,
